@@ -57,7 +57,7 @@ new Vue({
         <h1 align="center">Welkom bij Retro Cinema</h1><span></span><img src="../src/assets/retrocinema.jpg" align="right" style="height: 150px; width: 150px;" alt="Logo" />
         <b-button variant="warning"><router-link to="/">Home</router-link></b-button>
         <b-button variant="warning"><router-link to="/Users">Users</router-link></b-button>
-        <b-button variant="warning"><router-link to="/test">Test</router-link></b-button> 
+        <b-button variant="warning"><router-link to="/test">Beheerder</router-link></b-button> 
         <b-button variant="warning"><router-link to="/Programma">Programma</router-link></b-button> 
       <router-view></router-view>
     </div>
