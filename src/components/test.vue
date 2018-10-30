@@ -74,11 +74,15 @@
         opslaan drukt. Voer een tijd in het tekstvak in om deze toe te voegen als u op opslaan drukt </p>
     </div>
     <div class="rechts">
+
       <h4>Film Info</h4>
       <div>
+        <button v-on:click="get()">haal films op</button><br><br>
         <label>Selecteer titel</label>
         <select class="form-control" id="sel2" v-model="film.titel"> <button v-on:click="film.delete">Verwijder Film</button><br>
-          <option v-for="film in films">{{film.titel}}</option> <!-- list of select... moet nog gevuld worden met DB data -->
+          <option v-for="film in films" v-bind:value="films.value">
+            {{ film.titel }}
+          </option> <!-- list of select... moet nog gevuld worden met DB data -->
         </select>
       </div>
       <div>
@@ -178,10 +182,17 @@
       }, //deze methode moet metten alle films uit de backend opvragen, de films moeten dan in de select vakken worden gezet
       get() {
         this.$http.get('https://vuejs.firebaseio.com/data.json')
-          .then(function(filmobjecten){
+          .then(function(filmobjecten, status){
             console.log(filmobjecten);
-            this.films = filmobjecten.body;
-          })
+            if(status == 200)
+            {
+              this.films = filmobjecten.body;
+              console.log(this.films);
+            }
+
+          },error=> {
+          console.log(error);
+        })
       },
       // fetchData() {
       //      this.$http.get('https://vuesjs.firebaseio.com/data.json')
