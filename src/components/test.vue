@@ -73,9 +73,38 @@
         hierover verwijderen. Kies een bestande tijd, die verschijnt nadat u een film kiest om deze te verwijderen als u op
         opslaan drukt. Voer een tijd in het tekstvak in om deze toe te voegen als u op opslaan drukt </p>
     </div>
+    <div class="rechts">
+      <h4>Film Info</h4>
+      <div>
+        <label>Selecteer titel</label>
+        <select class="form-control" id="sel2" v-model="film.titel"> <button v-on:click="film.delete">Verwijder Film</button><br>
+          <option v-for="film in films">{{film.titel}}</option> <!-- list of select... moet nog gevuld worden met DB data -->
+        </select>
+      </div>
+      <div>
+        <label>Selecteer een tijd</label>
+        <select class="form-control" id="sel3" v-model="film.tijd"> <button v-on:click=""> Verwijder Tijd</button><br>
+          <li v-for="tijd in tijden">{{voorstelling.tijd}}</li> <!-- list of select... moet nog gevuld worden met DB data -->
+          <h6>je kan hier ook ervoor kiezen om de tijden te deleten</h6>
+        </select>
+        <br><br>
+        <label>Tijd Toevoegen</label><span></span><input type="text" ref="TijdIn" data-value="voer tijd in"><br><br>
+
+
+      </div>
+      <div class="rechts">
+        <span></span><button> Wijzigingen Opslaan</button> <br><br>
+      </div>
+
+      <br><br>
+
+      <div class="rechts">
+        <span></span><button> Geselecteerde Film Verwijderen</button>
+      </div>
+    </div>
     <div class="row">
       <div class="pull-left">
-        <h1>Film Toevoegen</h1>
+        <h4>Film Toevoegen</h4>
         <div class="form-group">
           <label>Titel:</label>
           <input class="form-control" type="text" v-model="film.titel">
@@ -146,6 +175,13 @@
           }, error => {
             console.log(error);
           });
+      }, //deze methode moet metten alle films uit de backend opvragen, de films moeten dan in de select vakken worden gezet
+      get() {
+        this.$http.get('https://vuejs.firebaseio.com/data.json')
+          .then(function(filmobjecten){
+            console.log(filmobjecten);
+            this.films = filmobjecten.body;
+          })
       },
       // fetchData() {
       //      this.$http.get('https://vuesjs.firebaseio.com/data.json')
@@ -166,3 +202,13 @@
 
   }
 </script>
+
+<style scoped>
+
+  .rechts{
+    float: right;
+  }
+
+
+
+</style>
