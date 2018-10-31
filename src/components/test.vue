@@ -73,13 +73,14 @@
         hierover verwijderen. Kies een bestande tijd, die verschijnt nadat u een film kiest om deze te verwijderen als u op
         opslaan drukt. Voer een tijd in het tekstvak in om deze toe te voegen als u op opslaan drukt </p>
     </div>
-    <div class="row">
-      <div class="pull-left">
+    <div class="b-table-stacked-sm">
+       <div class="pull-left"> 
         <h1>Film Toevoegen</h1>
         <div class="form-group">
           <label>Titel:</label>
           <input class="form-control" type="text" v-model="film.titel">
         </div>
+       </div>
 
         <div class="form-group">
           <label>Samenvatting:</label>
@@ -88,7 +89,7 @@
 
         <div class="form-group">
           <label>Speel tijden:</label>
-          <select class="form-control" id="sel1" v-model="film.tijd"> <br>
+          <select class="form-control" id="sel1" v-model="film.tijd">
             <option>10:00 uur</option>
             <option>13:00 uur</option>
             <option>18:00 uur</option>
@@ -99,7 +100,7 @@
 
         <div class="form-group">
           <label>Zaal:</label>
-          <select class="form-control" id="zaal" v-model="film.zaal"> <br>
+          <select class="form-control" id="zaal" v-model="film.zaal">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -109,18 +110,27 @@
         </div>
 
         <button class="button.btn.btn-primary pull-right" @click="submit">Opslaan</button>
+      <br>
 
+      <div class="b-table-stacked-sm">
+            <h1>Films Opvragen</h1>
+            <div class="form-group">
 
-        <!--<button class="button.btn.btn-primary" @click="fetchData">Get data</button>-->
-        <!--<br><br>-->
-        <!--<ul class="list-group">-->
-        <!--<li class="list-group-item" v-for="f in films"> {{ f.titel}} -{{ f.tijd }} -{{ f.samenvatting }}</li>-->
-        <!--</ul>-->
+            </div>
+      </div>
+        
+
+        <button class="button.btn.btn-primary" @click="fetchData">Haal films op</button>
+        <br><br>
+        <ul class="list-group">
+        <li class="list-group-item" v-for="f in films"> {{ f.titel}} -{{ f.tijd }} -{{ f.zaal }}</li>
+        </ul>
 
       </div>
 
-    </div>
-  </div>
+      </div>
+
+
 
 </template>
 
@@ -140,28 +150,30 @@
     },
     methods: {
       submit() {
-        this.$http.post('https://vuesjs.firebaseio.com/data.json', this.film)
+        this.$http.post('https://vuesjs.firebaseio.com/data.json', this.film) //vuesjs.firebaseio.com/data.json
           .then(response => {
             console.log(response);
           }, error => {
             console.log(error);
           });
       },
-      // fetchData() {
-      //      this.$http.get('https://vuesjs.firebaseio.com/data.json')
-      //            .then(response => {
-      //                return response.json();
-      //            })
-      //            .then(data => {
-      //                const resultArray = [];
-      //                for (let key in data) {
-      //                    resultArray.push(data[key]);
-      //                }
-      //                this.users = resultArray;
-      //            });
-      //
-      //
-      //     }
+
+
+      fetchData() {
+           this.$http.get('https://vuesjs.firebaseio.com/data.json')
+                 .then(response => {
+                     return response.json();
+                 })
+                 .then(data => {
+                     const resultArray = [];
+                     for (let key in data) {
+                         resultArray.push(data[key]);
+                     }
+                     this.films = resultArray;
+                 });
+
+
+          }
     },
 
   }
