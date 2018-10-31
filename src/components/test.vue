@@ -150,7 +150,7 @@
     },
     methods: {
       submit() {
-        this.$http.post('https://vuesjs.firebaseio.com/data.json', this.film) //vuesjs.firebaseio.com/data.json
+        this.$http.post('http://localhost:8080/voorstelling/filmstijdenzalen', this.film) //vuesjs.firebaseio.com/data.json
           .then(response => {
             console.log(response);
           }, error => {
@@ -160,7 +160,7 @@
 
 
       fetchData() {
-           this.$http.get('https://vuesjs.firebaseio.com/data.json')
+           this.$http.get('http://localhost:8080/voorstelling/filmstijdenzalen')
                  .then(response => {
                      return response.json();
                  })
