@@ -123,7 +123,7 @@
         <button class="button.btn.btn-primary" @click="fetchData">Haal films op</button>
         <br><br>
         <ul class="list-group">
-        <li class="list-group-item" v-for="f in films"> {{ f.Film.title}} -{{ f.Tijd.begintijd }} -{{ f.Zaal.zaalNummer }}</li>
+        <li class="list-group-item" v-for="f in films"> {{ f.Film.title}} -{{ f.Tijd.begintijd }} -{{ f.Zaal.zaalNummer}}</li>
         </ul>
 
       </div>
