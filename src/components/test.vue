@@ -74,7 +74,7 @@
         opslaan drukt. Voer een tijd in het tekstvak in om deze toe te voegen als u op opslaan drukt </p>
     </div>
     <div class="b-table-stacked-sm">
-       <div class="pull-left"> 
+       <div class="pull-left">
         <h1>Film Toevoegen</h1>
         <div class="form-group">
           <label>Titel:</label>
@@ -118,12 +118,12 @@
 
             </div>
       </div>
-        
+
 
         <button class="button.btn.btn-primary" @click="fetchData">Haal films op</button>
         <br><br>
         <ul class="list-group">
-        <li class="list-group-item" v-for="f in films"> {{ f.Film}} -{{ f.Tijd }} -{{ f.Zaal }}</li>
+        <li class="list-group-item" v-for="f in films"> {{ f.Film.title}} -{{ f.Tijd.begintijd }} -{{ f.Zaal.zaalNummer }}</li>
         </ul>
 
       </div>
@@ -150,6 +150,7 @@
     },
     methods: {
       submit() {
+        console.log(this.film);
         this.$http.post('http://localhost:8080/voorstelling/filmstijdenzalen', this.film) //vuesjs.firebaseio.com/data.json
           .then(response => {
             console.log(response);
@@ -170,6 +171,7 @@
                          resultArray.push(data[key]);
                      }
                      this.films = resultArray;
+                     console.log(resultArray);
                  });
 
 
