@@ -78,18 +78,18 @@
         <h1>Film Toevoegen</h1>
         <div class="form-group">
           <label>Titel:</label>
-          <input class="form-control" type="text" v-model="film.titel">
+          <input class="form-control" type="text" v-model="film.Film">
         </div>
        </div>
 
         <div class="form-group">
           <label>Samenvatting:</label>
-          <textarea class="form-control" rows="5" id="comment" v-model="film.samenvatting"></textarea>
+          <textarea class="form-control" rows="5" id="comment" v-model="film.Samenvatting"></textarea>
         </div>
 
         <div class="form-group">
           <label>Speel tijden:</label>
-          <select class="form-control" id="sel1" v-model="film.tijd">
+          <select class="form-control" id="sel1" v-model="film.Tijd">
             <option>10:00 uur</option>
             <option>13:00 uur</option>
             <option>18:00 uur</option>
@@ -100,7 +100,7 @@
 
         <div class="form-group">
           <label>Zaal:</label>
-          <select class="form-control" id="zaal" v-model="film.zaal">
+          <select class="form-control" id="zaal" v-model="film.Zaal">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -123,7 +123,7 @@
         <button class="button.btn.btn-primary" @click="fetchData">Haal films op</button>
         <br><br>
         <ul class="list-group">
-        <li class="list-group-item" v-for="f in films"> {{ f.titel}} -{{ f.tijd }} -{{ f.zaal }}</li>
+        <li class="list-group-item" v-for="f in films"> {{ f.Film}} -{{ f.Tijd }} -{{ f.Zaal }}</li>
         </ul>
 
       </div>
@@ -139,10 +139,10 @@
     data() {
       return {
         film: {
-          titel: '',
-          samenvatting: '',
-          tijd: '',
-          zaal: ''
+          Film: '',
+          Samenvatting: '',
+          Tijd: '',
+          Zaal: ''
         },
         films: []
 
