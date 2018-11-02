@@ -123,7 +123,7 @@
         <button class="button.btn.btn-primary" @click="fetchData">Haal films op</button>
         <br><br>
         <ul class="list-group">
-        <li class="list-group-item" v-for="f in films"> {{ f.Film.title}} -{{ f.Tijd.begintijd }} -{{ f.Zaal.zaalNummer}}</li>
+        <li class="list-group-item" v-for="f in films"> {{ f.Film.title }} -{{ f.Tijd.begintijd }} -{{ f.Zaal.zaalNummer}}</li>
         </ul>
 
       </div>
@@ -135,6 +135,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     data() {
       return {
@@ -150,8 +152,7 @@
     },
     methods: {
       submit() {
-        console.log(this.film);
-        this.$http.post('http://localhost:8080/voorstelling/filmstijdenzalen', this.film) //vuesjs.firebaseio.com/data.json
+        axios.post('http://localhost:8080/voorstelling/filmstijdenzalen', this.film) //vuesjs.firebaseio.com/data.json
           .then(response => {
             console.log(response);
           }, error => {
@@ -161,21 +162,11 @@
 
 
       fetchData() {
-           this.$http.get('http://localhost:8080/voorstelling/filmstijdenzalen')
-                 .then(response => {
-                     return response.json();
-                 })
-                 .then(data => {
-                     const resultArray = [];
-                     for (let key in data) {
-                         resultArray.push(data[key]);
-                     }
-                     this.films = resultArray;
-                     console.log(resultArray);
-                 });
-
-
-          }
+        axios.get('http://localhost:8080/voorstelling/filmstijdenzalen')
+          .then(response => {
+            this.films = response.data;
+         });
+      }
     },
 
   }
