@@ -87,6 +87,12 @@
           <textarea class="form-control" rows="5" id="comment" v-model="film.Samenvatting"></textarea>
         </div>
 
+      <div class="form-group">
+        <label>Dagen</label>
+        <select class="form-control" id="dagen" v-model="film.Dag">
+        </select>
+      </div>
+
         <div class="form-group">
           <label>Speel tijden:</label>
           <select class="form-control" id="sel1" v-model="film.Tijd">
@@ -108,6 +114,70 @@
           </select>
 
         </div>
+
+
+      <div class="form-group">
+        <label>Poster</label>
+        <input class="form-control" type="text" v-model="film.Poster">
+      </div>
+
+      <div class="form-group">
+        <label>Type film: </label>
+<br>
+          <b-form-checkbox id="checkbox1"
+                           v-model="film.Standaard"
+                           value="true"
+                           unchecked-value="false">
+            Standaard
+          </b-form-checkbox>
+
+
+
+          <b-form-checkbox id="checkbox2"
+                           v-model="film.Imax"
+                           value="true"
+                           unchecked-value="false">
+            Imax
+          </b-form-checkbox>
+
+
+
+          <b-form-checkbox id="checkbox3"
+                           v-model="film.DDD"
+                           value="true"
+                           unchecked-value="false">
+            DDD
+          </b-form-checkbox>
+
+
+
+          <b-form-checkbox id="checkbox4"
+                           v-model="film.ExtraLong"
+                           value="true"
+                           unchecked-value="false">
+            Extra lang
+          </b-form-checkbox>
+
+      </div>
+
+      <div class="form-group">
+        <label>Kijkwijzer:</label>
+        <multiselect v-model="film.Kijkwijzer" :options="options" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Pick some" label="name" track-by="name" :preselect-first="false">
+          <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="film.Kijkwijzer.length &amp;&amp; !isOpen">{{ film.Kijkwijzer.length }} options selected</span></template>
+        </multiselect>
+        <pre class="language-json"><code>{{ film.Kijkwijzer  }}</code></pre>
+      </div>
+
+      <div class="form-group">
+        <label>Kijkwijzer:</label>
+        <select multiple="true" v-bind:class="{ 'fix-height': multiple === 'true' }" v-model="film.Kijkwijzer">
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+        </select>
+      </div>
+
+        <br>
 
         <button class="button.btn.btn-primary pull-right" @click="submit">Opslaan</button>
       <br>
@@ -143,8 +213,16 @@
         film: {
           Film: '',
           Samenvatting: '',
+          Dag: '',
           Tijd: '',
-          Zaal: ''
+          Zaal: '',
+          Poster: '',
+          Standaard: '',
+          Imax: '',
+          DDD: '',
+          ExtraLong: '',
+          Kijkwijzer: '',
+
         },
         films: []
 

@@ -22,6 +22,8 @@ import { Carousel } from 'bootstrap-vue/es/components';
 import bTable from 'bootstrap-vue/es/components/table/table';
 import bCarouselSlide from 'bootstrap-vue/es/components/carousel/carousel-slide';
 
+
+
 Vue.component('b-carousel-slide',bCarouselSlide);
 Vue.component('b-carousel', bCarousel);
 Vue.component('b-dropdown', bDropdown);
