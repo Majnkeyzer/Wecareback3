@@ -12,6 +12,7 @@ import Users from './components/Users'
 import Test from './components/test'
 import Programma from './components/Programma'
 import Home from './components/Home'
+import axios from 'axios'
 
 import VueCarousel from 'vue-carousel';
 import VueResize from 'vue-resize'
@@ -46,6 +47,10 @@ const router = new VueRouter({
     {path: '/Programma', component: Programma},
   ]
 });
+
+axios.defaults.baseURL= 'http://localhost:8080'
+axios.defaults.headers.common['Authorization'] = 'RetroCinema'
+axios.defaults.headers.get['Accepts'] = 'application/json'
 
 /* eslint-disable no-new */
 new Vue({

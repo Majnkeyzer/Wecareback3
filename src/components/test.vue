@@ -152,7 +152,7 @@
     },
     methods: {
       submit() {
-        axios.post('http://localhost:8080/voorstelling/filmstijdenzalen', this.film) //vuesjs.firebaseio.com/data.json
+        axios.post('/voorstelling/filmstijdenzalen', this.film)
           .then(response => {
             console.log(response);
           }, error => {
@@ -162,7 +162,7 @@
 
 
       fetchData() {
-        axios.get('http://localhost:8080/voorstelling/filmstijdenzalen')
+        axios.get('/voorstelling/filmstijdenzalen')
           .then(response => {
             this.films = response.data;
          });
