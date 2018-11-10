@@ -4,17 +4,20 @@
     <br>
     <br>
     <b-dropdown text="Kies een dag:" class="m-2">
-      <b-dropdown-item-button>Maandag</b-dropdown-item-button>
-      <b-dropdown-item-button>Dinsdag</b-dropdown-item-button>
-      <b-dropdown-item-button>Woensdag</b-dropdown-item-button>
-      <b-dropdown-item-button>Donderdag</b-dropdown-item-button>
-      <b-dropdown-item-button>Vrijdag</b-dropdown-item-button>
-      <b-dropdown-item-button>Zaterdag</b-dropdown-item-button>
-      <b-dropdown-item-button>Zondag</b-dropdown-item-button>
+      <b-dropdown-item-button value="1">Maandag</b-dropdown-item-button>
+      <b-dropdown-item-button value="2">Dinsdag</b-dropdown-item-button>
+      <b-dropdown-item-button value="3">Woensdag</b-dropdown-item-button>
+      <b-dropdown-item-button value="4">Donderdag</b-dropdown-item-button>
+      <b-dropdown-item-button value="5">Vrijdag</b-dropdown-item-button>
+      <b-dropdown-item-button value="6">Zaterdag</b-dropdown-item-button>
+      <b-dropdown-item-button value="7">Zondag</b-dropdown-item-button>
     </b-dropdown>
 
+    <b-form-select  :options="options" class="mb-3" size="sm" /> //v-model="selected"
+    <!--<div>Selected: <strong>{{ selected }}</strong></div>-->
+<!---->
     <div style="margin-left: 160px;">
-    <b-table class="tabel" striped hover :items="films" :fields="fields"></b-table>
+    <b-table  class="tabel" striped hover :items="films" :fields="fields"></b-table> //v-for="calculateWeek() == calculateWeek(new Date()) "
     </div>
 
     <br>
@@ -66,14 +69,12 @@
                style="width: 280px; height: 160px;">
         </b-carousel-slide>
       </b-carousel>
-
   <!--    <p class="mt-4">
         Slide #: {{ slide }}<br>
         Sliding: {{ sliding }}
       </p>
   -->
     </div>
-
 
   </body>
 </template>
@@ -87,27 +88,40 @@
         return {
           slide: 0,
           sliding: true,
+          selected: '',
+          options: [
+            { value: 1, text: 'Maandag' },
+            { value: 2, text: 'Dinsdag' },
+            { value: 3, text: 'Woensdag' },
+            { value: 4, text: 'Donderdag' },
+            { value: 5, text: 'Vrijdag' },
+            { value: 6, text: 'Zaterdag' },
+            { value: 7, text: 'Zondag' }
+          ],
           fields: [
             {
               key: 'Film.title',
               label: 'Film'
             },
             {
-              key: 'Tijd.begintijd',
+              key: 'Datum',
+              label: 'Datum'
+            },
+            {
+              key: 'Tijd',
               label: 'Tijd'
             },
             {
               key: 'Zaal.zaalNummer',
               label: 'Zaal'
             }
-            
           ],
           film: {
             Film: '',
             Samenvatting: '',
+            Datum: '',
             Tijd: '',
-            Zaal: '',
-            Dag: ''
+            Zaal: ''
           },
           films: []
         };
@@ -119,15 +133,19 @@
         onSlideEnd(slide) {
           this.sliding = false
         },
+        calculateWeek(datum) {
+          console.log("ik kom hier binnen");
 
-
+            const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),0,1));
+            const week = Math.ceil(( ( (datum - yearStart) / 86400000) + 1)/7);
+            return week;
+        },
         fetchData() {
           axios.get('http://localhost:8080/voorstelling/filmstijdenzalen')
             .then(response => {
               this.films = response.data;
 
             });
-
         }
       },
       created() {
@@ -141,7 +159,7 @@
 
 </script>
 
-<style scoped>
+<style >
   .tabel {
     width: 800px;
     height: 150px;

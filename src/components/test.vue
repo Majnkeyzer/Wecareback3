@@ -89,13 +89,8 @@
 
         <div class="form-group">
           <label>Speel tijden:</label>
-          <select class="form-control" id="sel1" v-model="film.Tijd">
-            <option>10:00 uur</option>
-            <option>13:00 uur</option>
-            <option>18:00 uur</option>
-            <option>20:00 uur</option>
-          </select>
-
+          <input class="form-control" type="date" v-model="film.Datum">
+          <input class="form-control" type="time" v-model="film.Tijd">
         </div>
 
         <div class="form-group">
@@ -123,7 +118,7 @@
         <button class="button.btn.btn-primary" @click="fetchData">Haal films op</button>
         <br><br>
         <ul class="list-group">
-        <li class="list-group-item" v-for="f in films"> {{ f.Film.title }} -{{ f.Tijd.begintijd }} -{{ f.Zaal.zaalNummer}}</li>
+        <li class="list-group-item" v-for="f in films"> {{ f.Film.title }} -{{ f.Datum }} -{{ f.Tijd }} -{{ f.Zaal.zaalNummer}}</li>
         </ul>
 
       </div>
@@ -143,11 +138,11 @@
         film: {
           Film: '',
           Samenvatting: '',
+          Datum: '',
           Tijd: '',
           Zaal: ''
         },
         films: []
-
       };
     },
     methods: {
@@ -159,8 +154,6 @@
             console.log(error);
           });
       },
-
-
       fetchData() {
         axios.get('/voorstelling/filmstijdenzalen')
           .then(response => {
