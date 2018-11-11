@@ -13,9 +13,13 @@
       <b-dropdown-item-button value="7">Zondag</b-dropdown-item-button>
     </b-dropdown>
 
-    <b-form-select  :options="options" class="mb-3" size="sm" /> //v-model="selected"
-    <!--<div>Selected: <strong>{{ selected }}</strong></div>-->
-<!---->
+    <div>
+      <b-form inline>
+        <b-form-select id="kiesdag" required v-model="selected" :options="options" class="m-2"> </b-form-select>
+      </b-form>
+    </div>
+    <div>Selected: <strong>{{ selected }}</strong></div>
+
     <div style="margin-left: 160px;">
     <b-table  class="tabel" striped hover :items="films" :fields="fields"></b-table> //v-for="calculateWeek() == calculateWeek(new Date()) "
     </div>
