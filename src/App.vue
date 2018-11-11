@@ -8,11 +8,12 @@
 import test from './components/test'
 import Users from './components/Users'
 import programma from './components/Programma'
+import Film_toevoegen from './components/Film toevoegen'
 
 export default {
   name: 'App',
   components: {
-    test, Users, programma
+    test, Users, programma, Film_toevoegen
   }
 }
 </script>

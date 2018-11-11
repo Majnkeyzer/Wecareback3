@@ -12,6 +12,10 @@ import Users from './components/Users'
 import Test from './components/test'
 import Programma from './components/Programma'
 import Home from './components/Home'
+import Film_toevoegen from './components/Film toevoegen'
+import Film_verwijderen from './components/Film verwijderen'
+import Film_wijzigen from './components/Film wijzigen'
+import Voorstelling_wijzigen from './components/Voorstelling wijzigen'
 import axios from 'axios'
 
 import VueCarousel from 'vue-carousel';
@@ -22,6 +26,7 @@ import bCarousel from 'bootstrap-vue/es/components/carousel/carousel';
 import { Carousel } from 'bootstrap-vue/es/components';
 import bTable from 'bootstrap-vue/es/components/table/table';
 import bCarouselSlide from 'bootstrap-vue/es/components/carousel/carousel-slide';
+import DateTimePicker from 'vue-vanilla-datetime-picker';
 
 
 
@@ -29,6 +34,7 @@ Vue.component('b-carousel-slide',bCarouselSlide);
 Vue.component('b-carousel', bCarousel);
 Vue.component('b-dropdown', bDropdown);
 Vue.component('b-table', bTable);
+Vue.component('date-time-picker', DateTimePicker);
 Vue.use(VueCarousel);
 Vue.use(bCarouselSlide);
 Vue.use(VueResize);
@@ -47,6 +53,10 @@ const router = new VueRouter({
     {path: '/Users', component: Users},
     {path: '/test', component: Test},
     {path: '/Programma', component: Programma},
+    {path: '/Film_toevoegen', component: Film_toevoegen},
+    {path: '/Film_verwijderen', component: Film_verwijderen},
+    {path: '/Film_wijzigen', component: Film_wijzigen},
+    {path: '/Voorstelling_wijzigen', component: Voorstelling_wijzigen},
   ]
 });
 
