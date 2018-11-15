@@ -171,7 +171,7 @@
     methods: {
 
       fetchFilm() {
-        axios.get('https://vuebios.firebaseio.com/data.json')
+        axios.get('https://localhost:8080/film/getAll')
           .then(response => {
             this.films = response.data;
           });
@@ -181,7 +181,7 @@
       RemoveFilm(id) {
         var ConfirmBox = confirm("Weet u zeker dat u deze Film wilt verwijderen?")
 
-        if (ConfirmBox) axios.delete('https://vuebios.firebaseio.com/data.json/'+ id)
+        if (ConfirmBox) axios.delete('https://localhost:8080/film/delete/'+ id)
 
         this.fetchFilm()
       }
@@ -192,7 +192,7 @@
 
         this.newFilm = {id: '', Film: '', Samenvatting: '', Poster: '', Imax: '',DDD: '',ExtraLang: '',Kijkwijzer: [], Datumbeschikbaar: '',Afloopdatum: ''}
 
-        axios.put('https://vuebios.firebaseio.com/data.json' + id, film, function (data) {
+        axios.put('https://localhost:8080/film/update/' + id, film, function (data) {
           console.log(data)
         })
 
@@ -206,7 +206,7 @@
       ShowFilm(id) {
         this.edit = true
 
-        axios.get('https://vuebios.firebaseio.com/data.json' + id, function (data) {
+        axios.get('https://localhost:8080/film/getById/' + id, function (data) {
           this.newFilm.id = data.id
           this.newFilm.Film = data.Film
           this.newFilm.Samenvatting = data.Samenvatting
@@ -229,7 +229,7 @@
         this.newFilm = {Film: '', Samenvatting: '', Poster: '', Imax: '',DDD: '',ExtraLang: '',Kijkwijzer: [],Datumbeschikbaar: '',Afloopdatum: ''}
 
 
-        axios.post('https://vuebios.firebaseio.com/data.json', film)
+        axios.post('https://localhost:8080/film/save/', film)
 
 
         self = this
