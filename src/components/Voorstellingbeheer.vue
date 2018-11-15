@@ -118,7 +118,7 @@
       },
           methods: {
             fetchFilm() {
-              axios.get('https://vuebios.firebaseio.com/data.json')
+              axios.get('https://localhost:8080/film/getAll')
                 .then(response => {
                   this.films = response.data;
                 });
@@ -126,7 +126,7 @@
             ,
 
             fetchVoorstelling() {
-              axios.get('https://vuebios.firebaseio.com/data.json')
+              axios.get('https://localhost:8080/voorstelling/getAll')
                 .then(response => {
                   this.voorstellingen = response.data;
                 });
@@ -136,7 +136,7 @@
           RemoveVoorstelling(id) {
             var ConfirmBox = confirm("Weet u zeker dat u deze Voorstelling wilt verwijderen?")
 
-            if (ConfirmBox) axios.delete('https://vuebios.firebaseio.com/data.json'+ id)
+            if (ConfirmBox) axios.delete('https://localhost:8080/voorstelling/delete'+ id)
 
             this.fetchVoorstelling()
           }
@@ -147,7 +147,7 @@
 
             this.newVoorstelling = {id: '', Film: '', Datum: '', Tijd: '', Zaal: ''}
 
-            axios.put('https://vuebios.firebaseio.com/data.json' + id, voorstelling, function (data) {
+            axios.put('https://localhost:8080/voorstelling/update' + id, voorstelling, function (data) {
               console.log(data)
             })
 
@@ -161,7 +161,7 @@
           ShowVoorstelling(id) {
             this.edit = true
 
-            axios.get('https://vuebios.firebaseio.com/data.json' + id, function (data) {
+            axios.get('https://localhost/voorstelling/findById' + id, function (data) {
               this.newVoorstelling.id = data.id
               this.newVoorstelling.name = data.Film
               this.newVoorstelling.email = data.Datum
@@ -179,7 +179,7 @@
             this.newVoorstelling = {Film: '', Datum: '', Tijd: '', Zaal: ''}
 
 
-            axios.post('https://vuebios.firebaseio.com/data.json', voorstelling)
+            axios.post('https://localhost:8080/voorstelling/save', voorstelling)
 
 
             self = this
