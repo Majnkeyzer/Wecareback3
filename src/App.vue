@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import test from './components/test'
+import test from './components/Beheer'
 import Users from './components/Users'
 import programma from './components/Programma'
 import Film_toevoegen from './components/Film toevoegen'
@@ -13,7 +13,7 @@ import Film_toevoegen from './components/Film toevoegen'
 export default {
   name: 'App',
   components: {
-    test, Users, programma, Film_toevoegen
+    test, Users, programma
   }
 }
 </script>

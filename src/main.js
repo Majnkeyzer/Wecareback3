@@ -7,15 +7,15 @@ import VueRouter from 'vue-router'
 import 'vue-resize/dist/vue-resize.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueFire from 'vuefire';
+
 
 import Users from './components/Users'
-import Test from './components/test'
+import Beheer from './components/Beheer'
 import Programma from './components/Programma'
 import Home from './components/Home'
-import Film_toevoegen from './components/Film toevoegen'
-import Film_verwijderen from './components/Film verwijderen'
-import Film_wijzigen from './components/Film wijzigen'
-import Voorstelling_wijzigen from './components/Voorstelling wijzigen'
+import Filmbeheer from './components/Filmbeheer'
+import Voorstellingbeheer from './components/Voorstellingbeheer'
 import axios from 'axios'
 
 import VueCarousel from 'vue-carousel';
@@ -43,7 +43,9 @@ Vue.use(Dropdown);
 Vue.use(BootstrapVue);
 Vue.use(vueResource);
 Vue.use(VueRouter);
+Vue.use(VueFire);
 Vue.config.productionTip = false;
+
 
 const router = new VueRouter({
   mode: 'history',
@@ -51,12 +53,10 @@ const router = new VueRouter({
   routes: [
     {path: '/', component: Home},
     {path: '/Users', component: Users},
-    {path: '/test', component: Test},
+    {path: '/Beheer', component: Beheer},
     {path: '/Programma', component: Programma},
-    {path: '/Film_toevoegen', component: Film_toevoegen},
-    {path: '/Film_verwijderen', component: Film_verwijderen},
-    {path: '/Film_wijzigen', component: Film_wijzigen},
-    {path: '/Voorstelling_wijzigen', component: Voorstelling_wijzigen},
+    {path: '/Filmbeheer', component: Filmbeheer},
+    {path: '/Voorstellingbeheer', component: Voorstellingbeheer}
   ]
 });
 
@@ -75,7 +75,7 @@ new Vue({
         <button><router-link to="/">Home</router-link></button>
         <button><router-link to="/Users">Users</router-link></button>        
         <button><router-link to="/Programma">Programma</router-link></button> 
-        <button><router-link to="/test">Beheer</router-link></button>
+        <button><router-link to="/Beheer">Beheer</router-link></button>
       <router-view></router-view>
     </div>
   </body>
