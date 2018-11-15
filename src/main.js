@@ -7,7 +7,7 @@ import VueRouter from 'vue-router'
 import 'vue-resize/dist/vue-resize.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import VueFire from 'vuefire';
+
 
 
 import Users from './components/Users'
@@ -26,7 +26,7 @@ import bCarousel from 'bootstrap-vue/es/components/carousel/carousel';
 import { Carousel } from 'bootstrap-vue/es/components';
 import bTable from 'bootstrap-vue/es/components/table/table';
 import bCarouselSlide from 'bootstrap-vue/es/components/carousel/carousel-slide';
-import DateTimePicker from 'vue-vanilla-datetime-picker';
+
 
 
 
@@ -34,7 +34,6 @@ Vue.component('b-carousel-slide',bCarouselSlide);
 Vue.component('b-carousel', bCarousel);
 Vue.component('b-dropdown', bDropdown);
 Vue.component('b-table', bTable);
-Vue.component('date-time-picker', DateTimePicker);
 Vue.use(VueCarousel);
 Vue.use(bCarouselSlide);
 Vue.use(VueResize);
@@ -43,7 +42,7 @@ Vue.use(Dropdown);
 Vue.use(BootstrapVue);
 Vue.use(vueResource);
 Vue.use(VueRouter);
-Vue.use(VueFire);
+
 Vue.config.productionTip = false;
 
 
