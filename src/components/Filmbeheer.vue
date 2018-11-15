@@ -14,7 +14,7 @@
         </ul>
       </div>
 
-      <form>
+      <form @submit.prevent="AddNewFilm">
 
         <div class="form-group">
           <label for="id">ID:</label>
@@ -96,7 +96,7 @@
 
 
         <div class="form-group">
-          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit"@click="AddNewFilm">Voeg film toe</button>
+          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg film toe</button>
 
           <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newFilm.id)">Pas film aan</button>
         </div>
