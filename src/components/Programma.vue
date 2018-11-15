@@ -141,7 +141,7 @@
     },
     created() {
       this.selected = new Date().getDay(); //default dag is vandaag, haal alle films en attributen op.
-      axios.get(`http://localhost:8080/voorstelling/filmstijdenzalen`)
+      axios.get(`http://localhost:8080/voorstelling/getAll`)
         .then(response => {
           this.films = response.data
         })
