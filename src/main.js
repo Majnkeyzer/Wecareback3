@@ -16,6 +16,7 @@ import Programma from './components/Programma'
 import Home from './components/Home'
 import Filmbeheer from './components/Filmbeheer'
 import Voorstellingbeheer from './components/Voorstellingbeheer'
+import Zaalbeheer from './components/Zaalbeheer'
 import axios from 'axios'
 
 import VueCarousel from 'vue-carousel';
@@ -55,7 +56,8 @@ const router = new VueRouter({
     {path: '/Beheer', component: Beheer},
     {path: '/Programma', component: Programma},
     {path: '/Filmbeheer', component: Filmbeheer},
-    {path: '/Voorstellingbeheer', component: Voorstellingbeheer}
+    {path: '/Voorstellingbeheer', component: Voorstellingbeheer},
+    {path: '/Zaalbeheer', component: Zaalbeheer}
   ]
 });
 

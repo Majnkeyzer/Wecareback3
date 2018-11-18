@@ -2,46 +2,47 @@
   <div class="container">
     <br>
     <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
+    <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
     <br><br>
     <h1>Filmbeheer</h1>
     <div id="filmController" style="padding-top: 2em">
 
       <div class="alert alert-danger" v-if="!isValid">
         <ul>
-          <li v-show="!validation.Film">Titel is verplicht.</li>
-          <li v-show="!validation.Datumbeschikbaar">Datumbeschikbaar is verplicht.</li>
-          <li v-show="!validation.Afloopdatum">Datumafloop is verplicht.</li>
+          <li v-show="!validation.titel">Titel is verplicht.</li>
+          <li v-show="!validation.datumBeschikbaar">Datumbeschikbaar is verplicht.</li>
+          <li v-show="!validation.afloopDatum">Datumafloop is verplicht.</li>
         </ul>
       </div>
 
       <form @submit.prevent="AddNewFilm">
 
-        <div class="form-group">
-          <label for="id">ID:</label>
-          <input v-model="newFilm.id" type="text" id="id" name="id" class="form-control">
-        </div>
+        <!--<div class="form-group">-->
+          <!--<label for="id">ID:</label>-->
+          <!--<input v-model="newFilm.filmid" type="text" id="id" name="id" class="form-control">-->
+        <!--</div>-->
 
         <div class="form-group">
-          <label for="film">Titel:</label>
-          <input v-model="newFilm.Film" type="text" id="film" name="film" class="form-control">
+          <label for="titel">Titel:</label>
+          <input v-model="newFilm.titel" type="text" id="titel" name="titel" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="samenvatting">Samenvatting:</label>
-          <textarea v-model="newFilm.Samenvatting" rows="5" id="samenvatting" name="samenvatting" class="form-control">
+          <textarea v-model="newFilm.samenvatting" rows="5" id="samenvatting" name="samenvatting" class="form-control">
           </textarea>
         </div>
 
         <div class="form-group">
           <label for="poster">Poster:</label>
-          <input v-model="newFilm.Poster" type="text" id="poster" name="poster" class="form-control">
+          <input v-model="newFilm.poster" type="text" id="poster" name="poster" class="form-control">
         </div>
 
         <div class="form-group">
           <label>Type Film:</label>
           <br>
           <b-form-checkbox id="imax"
-                           v-model="newFilm.Imax"
+                           v-model="newFilm.imax"
                            name="imax"
                            value="true"
                            unchecked-value="false"
@@ -49,15 +50,15 @@
             Imax
           </b-form-checkbox>
           <b-form-checkbox id="ddd"
-                           v-model="newFilm.DDD"
+                           v-model="newFilm.ddd"
                            name="ddd"
                            value="true"
                            unchecked-value="false"
                            >
-            DDD
+            3D
           </b-form-checkbox>
           <b-form-checkbox id="extralang"
-                           v-model="newFilm.ExtraLang"
+                           v-model="newFilm.extralang"
                            name="extralang"
                            value="true"
                            unchecked-value="false"
@@ -69,7 +70,7 @@
 
           <div class="form-group">
             <label for="kijkwijzer">Kijkwijzer:</label>
-            <select v-model="newFilm.Kijkwijzer" id="kijkwijzer" name="kijkwijzer" class="form-control" multiple>
+            <select v-model="newFilm.kijkwijzer" id="kijkwijzer" name="kijkwijzer" class="form-control">
               <option>Alle leeftijden</option>
               <option>6 jaar en ouder</option>
               <option>9 jaar en ouder</option>
@@ -86,19 +87,19 @@
         </div>
         <div class="form-group">
           <label for="datumbeschikbaar">Datumbeschikbaar:</label>
-          <input v-model="newFilm.Datumbeschikbaar" type="date" id="datumbeschikbaar" name="datumbeschikbaar" class="form-control">
+          <input v-model="newFilm.datumBeschikbaar" type="date" id="datumbeschikbaar" name="datumbeschikbaar" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="afloopdatum">Afloopdatum:</label>
-          <input v-model="newFilm.Afloopdatum" type="date" id="afloopdatum" name="afloopdatum" class="form-control">
+          <input v-model="newFilm.afloopDatum" type="date" id="afloopdatum" name="afloopdatum" class="form-control">
         </div>
 
 
         <div class="form-group">
           <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg film toe</button>
 
-          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newFilm.id)">Pas film aan</button>
+          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newFilm.filmid)">Pas film aan</button>
         </div>
 
       </form>
@@ -120,16 +121,16 @@
 
         <tbody>
         <tr v-for="film in films">
-          <td>{{ film.id }}</td>
-          <td>{{ film.Film }}</td>
-          <td>{{ film.Imax }}</td>
-          <td>{{ film.DDD }}</td>
-          <td>{{ film.ExtraLang }}</td>
-          <td>{{ film.Datumbeschikbaar }}</td>
-          <td>{{ film.Afloopdatum }}</td>
+          <td>{{ film.filmid }}</td>
+          <td>{{ film.titel }}</td>
+          <td>{{ film.imax }}</td>
+          <td>{{ film.ddd }}</td>
+          <td>{{ film.extralang }}</td>
+          <td>{{ film.datumBeschikbaar }}</td>
+          <td>{{ film.afloopDatum }}</td>
           <td>
-            <button class="btn btn-default btn-sm" @click="ShowFilm(film.id)">Aanpassen</button>
-            <button class="btn btn-danger btn-sm" @click="RemoveFilm(film.id)">Verwijderen</button>
+            <button class="btn btn-default btn-sm" @click="ShowFilm(film.filmid)">Aanpassen</button>
+            <button class="btn btn-danger btn-sm" @click="RemoveFilm(film.filmid)">Verwijderen</button>
           </td>
         </tr>
         </tbody>
@@ -150,16 +151,16 @@
     data() {
       return {
         newFilm: {
-          id: '',
-          Film: '',
-          Samenvatting: '',
-          Poster: '',
-          Imax: '',
-          DDD: '',
-          ExtraLang: '',
-          Kijkwijzer: [],
-          Datumbeschikbaar: '',
-          Afloopdatum: '',
+          filmid: '',
+          titel: '',
+          samenvatting: '',
+          poster: '',
+          imax: '',
+          ddd: '',
+          extralang: '',
+          kijkwijzer: '',
+          datumBeschikbaar: '',
+          afloopDatum: '',
         },
         films: [],
 
@@ -171,28 +172,28 @@
     methods: {
 
       fetchFilm() {
-        axios.get('https://localhost:8080/film/getAll')
+        axios.get('http://localhost:8080/film/getAll')
           .then(response => {
             this.films = response.data;
           });
       }
       ,
 
-      RemoveFilm(id) {
+      RemoveFilm(filmid) {
         var ConfirmBox = confirm("Weet u zeker dat u deze Film wilt verwijderen?")
 
-        if (ConfirmBox) axios.delete('https://localhost:8080/film/delete/'+ id)
+        if (ConfirmBox) axios.delete('http://localhost:8080/film/delete/'+ filmid)
 
         this.fetchFilm()
       }
       ,
 
-      EditFilm(id) {
+      EditFilm(filmid) {
         var film = this.newFilm
 
-        this.newFilm = {id: '', Film: '', Samenvatting: '', Poster: '', Imax: '',DDD: '',ExtraLang: '',Kijkwijzer: [], Datumbeschikbaar: '',Afloopdatum: ''}
+        this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: '', datumBeschikbaar: '',afloopDatum: ''}
 
-        axios.put('https://localhost:8080/film/update/' + id, film, function (data) {
+        axios.put('http://localhost:8080/film/update/' + filmid, film, function (data) {
           console.log(data)
         })
 
@@ -203,34 +204,31 @@
       }
       ,
 
-      ShowFilm(id) {
+      ShowFilm(filmid) {
         this.edit = true
 
-        axios.get('https://localhost:8080/film/getById/' + id, function (data) {
-          this.newFilm.id = data.id
-          this.newFilm.Film = data.Film
-          this.newFilm.Samenvatting = data.Samenvatting
-          this.newFilm.Poster = data.Poster
-          this.newFilm.Imax = data.Imax
-          this.newFilm.DDD = data.DDD
-          this.newFilm.ExtraLang = data.ExtraLang
-          this.newFilm.Kijkwijzer = data.Kijkwijzer
-          this.newFilm.Datumbeschikbaar = data.Datumbeschikbaar
-          this.newFilm.Afloopdatum = data.Afloopdatum
-        })
-      }
-      ,
+        axios.get('http://localhost:8080/film/getById/'+ filmid)
+          .then(response => {
+            this.newFilm.filmid = response.data.filmid
+            this.newFilm.titel = response.data.titel
+            this.newFilm.samenvatting = response.data.samenvatting
+            this.newFilm.poster = response.data.poster
+            this.newFilm.imax = response.data.imax
+            this.newFilm.ddd = response.data.ddd
+            this.newFilm.extralang = response.data.extralang
+            this.newFilm.kijkwijzer = response.data.kijkwijzer
+            this.newFilm.datumBeschikbaar = response.data.datumBeschikbaar
+            this.newFilm.afloopDatum = response.data.afloopDatum
+          });
+      },
 
       AddNewFilm(){
-
-        var film = this.newFilm
-
-
-        this.newFilm = {Film: '', Samenvatting: '', Poster: '', Imax: '',DDD: '',ExtraLang: '',Kijkwijzer: [],Datumbeschikbaar: '',Afloopdatum: ''}
-
-
-        axios.post('https://localhost:8080/film/save/', film)
-
+        axios.post('http://localhost:8080/film/save', this.newFilm)
+          .then(response => {
+            console.log(response);
+          }, error => {
+            console.log(error);
+          });
 
         self = this
         this.success = true
@@ -238,7 +236,7 @@
           self.success = false
         }, 5000)
 
-
+        this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: '', datumBeschikbaar: '',afloopDatum: ''}
         this.fetchFilm()
 
       }
@@ -249,9 +247,9 @@
     computed: {
       validation() {
         return {
-          Film: !!this.newFilm.Film.trim(),
-          Datumbeschikbaar: !!this.newFilm.Datumbeschikbaar.trim(),
-          Afloopdatum: !!this.newFilm.Afloopdatum.trim(),
+          titel: !!this.newFilm.titel.trim(),
+          datumBeschikbaar: !!this.newFilm.datumBeschikbaar.trim(),
+          afloopDatum: !!this.newFilm.afloopDatum.trim(),
         }
       }
       ,
