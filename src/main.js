@@ -26,10 +26,12 @@ import bCarousel from 'bootstrap-vue/es/components/carousel/carousel';
 import { Carousel } from 'bootstrap-vue/es/components';
 import bTable from 'bootstrap-vue/es/components/table/table';
 import bCarouselSlide from 'bootstrap-vue/es/components/carousel/carousel-slide';
+import bButtonGroup from 'bootstrap-vue/es/components/button-group/button-group';
 
 
 
 
+Vue.component('b-button-group', bButtonGroup);
 Vue.component('b-carousel-slide',bCarouselSlide);
 Vue.component('b-carousel', bCarousel);
 Vue.component('b-dropdown', bDropdown);
@@ -67,16 +69,29 @@ axios.defaults.headers.get['Accepts'] = 'application/json'
 new Vue({
   router,
   template: `
-  <body style="background-color: slategray;">
-    <div id="app" style="margin-left: 50px; margin-right: 50px; background-color: slategray">
+  <html>
+  <body>
+      <div id="app" style="margin-left: 50px; margin-right: 50px; background-color: slategray">
       <br>
-        <h1 align="center">Welkom bij Retro Cinema</h1><span></span><img src="../src/assets/retrocinema.jpg" align="right" style="height: 150px; width: 150px;" alt="Logo" />
-        <button><router-link to="/">Home</router-link></button>
-        <button><router-link to="/Users">Users</router-link></button>        
-        <button><router-link to="/Programma">Programma</router-link></button> 
-        <button><router-link to="/Beheer">Beheer</router-link></button>
+      <header>
+        <h1 align="center">Welkom bij Retro Cinema</h1> <img src="../src/assets/retrocinema.jpg" align="right" style="height: 150px; width: 150px;" alt="Logo" />
+      </header>  
+      <div>
+      <b-button-group >
+        <b-button  ><router-link  to="/"  >Home</router-link></b-button>
+        <b-button ><router-link to="/Users" >Users</router-link></b-button>        
+        <b-button ><router-link to="/Programma">Programma</router-link></b-button> 
+        <b-button ><router-link to="/Beheer">Beheer</router-link></b-button>
+       </b-button-group>
+       
+       </div>
       <router-view></router-view>
-    </div>
-  </body>
+       <footer>
+            &copy; RetroCinema 2018 
+        </footer>
+    
+
+
+ 
   `,
 }).$mount('#app')
