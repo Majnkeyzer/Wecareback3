@@ -84,23 +84,15 @@
             </select>
 
         </div>
-
-        
         <div class="form-group">
           <label for="datumbeschikbaar">Datumbeschikbaar:</label>
           <input v-model="newFilm.Datumbeschikbaar" type="date" id="datumbeschikbaar" name="datumbeschikbaar" class="form-control">
         </div>
 
-<br>
-
-
         <div class="form-group">
-
           <label for="afloopdatum">Afloopdatum:</label>
-
           <input v-model="newFilm.Afloopdatum" type="date" id="afloopdatum" name="afloopdatum" class="form-control">
         </div>
-
 
 
         <div class="form-group">

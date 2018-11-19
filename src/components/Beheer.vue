@@ -14,6 +14,7 @@
     <div align="center">
       <button><router-link to="/Filmbeheer">Filmbeheer</router-link></button>
       <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
+      <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
 

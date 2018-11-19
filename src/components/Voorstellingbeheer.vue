@@ -2,55 +2,52 @@
   <div class="container">
     <br>
     <button><router-link to="/Filmbeheer">Filmbeheer</router-link></button>
+    <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
     <br><br>
     <h1>Voorstellingbeheer</h1>
     <div id="voorstellingController" style="padding-top: 2em">
 
       <div class="alert alert-danger" v-if="!isValid">
         <ul>
-          <li v-show="!validation.Film">Titel is verplicht.</li>
-          <li v-show="!validation.Datum">Datum is verplicht.</li>
-          <li v-show="!validation.Tijd">Tijd is verplicht.</li>
-          <li v-show="!validation.Zaal">Zaal is verplicht.</li>
+          <!--<li v-show="!validation.film">Titel is verplicht.</li>-->
+          <li v-show="!validation.dag">Datum is verplicht.</li>
+          <li v-show="!validation.tijd">Tijd is verplicht.</li>
+          <!--<li v-show="!validation.zalen">Zaal is verplicht.</li>-->
         </ul>
       </div>
 
-      <form>
-        <div class="form-group">
-          <label for="id">ID:</label>
-          <input v-model="newVoorstelling.id" type="text" id="id" name="id" class="form-control">
-        </div>
+      <form @submit.prevent="AddNewVoorstelling">
+        <!--<div class="form-group">-->
+          <!--<label for="id">ID:</label>-->
+          <!--<input v-model="newVoorstelling.id" type="text" id="id" name="id" class="form-control">-->
+        <!--</div>-->
 
         <div class="form-group">
-          <label for="film">Titel:</label>
-          <select v-model="newVoorstelling.Film"  id="film" name="film" class="form-control">
-            <option v-for="film in films">{{film.Film}}</option>
-            <option>James Bond</option>
+          <label for="titel">Titel:</label>
+          <select v-model="newVoorstelling.film"  id="titel" name="titel" class="form-control">
+            <option v-for="film in films">{{film.titel}}</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="datum">Datum:</label>
-          <input v-model="newVoorstelling.Datum" type="date" id="datum" name="datum" class="form-control">
+          <input v-model="newVoorstelling.dag" type="date" id="datum" name="datum" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="tijd">Tijd:</label>
-          <input v-model="newVoorstelling.Tijd" type="time" id="tijd" name="tijd" class="form-control">
+          <input v-model="newVoorstelling.tijd" type="time" id="tijd" name="tijd" class="form-control">
         </div>
 
         <div class="form-group">
-          <label for="zaal">Zaal:</label>
-          <select v-model="newVoorstelling.Zaal" id="zaal" name="zaal" class="form-control">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+          <label for="zalen">Zaal:</label>
+          <select v-model="newVoorstelling.zalen" id="zalen" name="zalen" class="form-control">
+            <option v-for="zaal in zalen">{{zaal.zaalNummer}}</option>
           </select>
         </div>
 
         <div class="form-group">
-          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit" @click="AddNewVoorstelling">Voeg voorstelling toe</button>
+          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg voorstelling toe</button>
 
           <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditVoorstelling(newVoorstelling.id)">Verander Voorstelling</button>
         </div>
@@ -73,10 +70,10 @@
         <tbody>
         <tr v-for="voorstelling in voorstellingen">
           <td>{{ voorstelling.id }}</td>
-          <td>{{ voorstelling.Film }}</td>
-          <td>{{ voorstelling.Datum }}</td>
-          <td>{{ voorstelling.Tijd }}</td>
-          <td>{{ voorstelling.Zaal }}</td>
+          <td>{{ voorstelling.film }}</td>
+          <td>{{ voorstelling.dag }}</td>
+          <td>{{ voorstelling.tijd }}</td>
+          <td>{{ voorstelling.zalen }}</td>
           <td>
             <button class="btn btn-default btn-sm" @click="ShowVoorstelling(voorstelling.id)">Aanpassen</button>
             <button class="btn btn-danger btn-sm" @click="RemoveVoorstelling(voorstelling.id)">Verwijderen</button>
@@ -95,18 +92,20 @@
       mounted() {
         this.fetchVoorstelling()
         this.fetchFilm()
+        this.fetchZalen()
       },
       name: "Voorstellingbeheer",
 
       data() {
         return {
+          zalen: [],
           films: [],
           newVoorstelling: {
             id: '',
-            Film: '',
-            Datum: '',
-            Tijd: '',
-            Zaal: ''
+            film: '',
+            dag: '',
+            tijd: '',
+            zalen: ''
           },
           voorstellingen: [],
 
@@ -117,8 +116,16 @@
         }
       },
           methods: {
+            fetchZalen() {
+              axios.get('http://localhost:8080/Zaal/getAll')
+                .then(response => {
+                  this.zalen = response.data;
+                });
+            }
+            ,
+
             fetchFilm() {
-              axios.get('https://vuebios.firebaseio.com/data.json')
+              axios.get('http://localhost:8080/film/getAll')
                 .then(response => {
                   this.films = response.data;
                 });
@@ -126,7 +133,7 @@
             ,
 
             fetchVoorstelling() {
-              axios.get('https://vuebios.firebaseio.com/data.json')
+              axios.get('http://localhost:8080/voorstelling/getAll')
                 .then(response => {
                   this.voorstellingen = response.data;
                 });
@@ -136,7 +143,7 @@
           RemoveVoorstelling(id) {
             var ConfirmBox = confirm("Weet u zeker dat u deze Voorstelling wilt verwijderen?")
 
-            if (ConfirmBox) axios.delete('https://vuebios.firebaseio.com/data.json'+ id)
+            if (ConfirmBox) axios.delete('http://localhost:8080/voorstelling/delete/'+ id)
 
             this.fetchVoorstelling()
           }
@@ -145,9 +152,9 @@
           EditVoorstelling(id) {
             var voorstelling = this.newVoorstelling
 
-            this.newVoorstelling = {id: '', Film: '', Datum: '', Tijd: '', Zaal: ''}
+            this.newVoorstelling = {id: '', film: '', dag: '', tijd: '', zalen: ''}
 
-            axios.put('https://vuebios.firebaseio.com/data.json' + id, voorstelling, function (data) {
+            axios.put('http://localhost:8080/voorstelling/update/' + id, voorstelling, function (data) {
               console.log(data)
             })
 
@@ -161,25 +168,24 @@
           ShowVoorstelling(id) {
             this.edit = true
 
-            axios.get('https://vuebios.firebaseio.com/data.json' + id, function (data) {
-              this.newVoorstelling.id = data.id
-              this.newVoorstelling.name = data.Film
-              this.newVoorstelling.email = data.Datum
-              this.newVoorstelling.address = data.Tijd
-              this.newVoorstelling.address = data.Zaal
-            })
+            axios.get('http://localhost:8080/voorstelling/getById/' + id)
+              .then(response => {
+              this.newVoorstelling.id = response.data.id
+              this.newVoorstelling.film = response.data.film
+              this.newVoorstelling.dag = response.data.dag
+              this.newVoorstelling.tijd = response. data.tijd
+              this.newVoorstelling.zalen = response.data.zalen
+            });
           }
         ,
 
           AddNewVoorstelling() {
-
-            var voorstelling = this.newVoorstelling
-
-
-            this.newVoorstelling = {Film: '', Datum: '', Tijd: '', Zaal: ''}
-
-
-            axios.post('https://vuebios.firebaseio.com/data.json', voorstelling)
+            axios.post('http://localhost:8080/voorstelling/save', this.newVoorstelling)
+                    .then(response => {
+                      console.log(response);
+                    }, error => {
+                      console.log(error);
+                    });
 
 
             self = this
@@ -188,7 +194,7 @@
               self.success = false
             }, 5000)
 
-
+            this.newVoorstelling = {film: '', dag: '', tijd: '', zaal: ''}
             this.fetchVoorstelling()
 
           }
@@ -199,10 +205,10 @@
         computed: {
           validation(){
             return {
-              Film: !!this.newVoorstelling.Film.trim(),
-              Datum: !!this.newVoorstelling.Datum.trim(),
-              Tijd: !!this.newVoorstelling.Tijd.trim(),
-              Zaal: !!this.newVoorstelling.Zaal.trim()
+              // film: !!this.newVoorstelling.film.trim(),
+              dag: !!this.newVoorstelling.dag.trim(),
+              tijd: !!this.newVoorstelling.tijd.trim(),
+              // zalen: !!this.newVoorstelling.zalen.trim()
             }
           }
         ,
