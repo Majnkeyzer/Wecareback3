@@ -4,7 +4,8 @@
     <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
     <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
     <br><br>
-    <h1>Filmbeheer</h1>
+    <h1> {{ msg }}</h1>
+    <!--<h1>Filmbeheer</h1>-->
     <div id="filmController" style="padding-top: 2em">
 
       <div class="alert alert-danger" v-if="!isValid">
@@ -150,6 +151,7 @@
 
     data() {
       return {
+        msg:'Filmbeheer',
         newFilm: {
           filmid: '',
           titel: '',
