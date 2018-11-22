@@ -1,5 +1,6 @@
 <template>
-  <body style="background-color: slategray;">
+
+  <body >
 
     <br>
     <br>
@@ -155,6 +156,10 @@
 </script>
 
 <style >
+  body {
+    background-color: slategray;
+  }
+
   .tabel {
     width: 500px;
     height: 50px;
