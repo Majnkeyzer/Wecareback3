@@ -17,6 +17,7 @@ import Home from './components/Home'
 import Filmbeheer from './components/Filmbeheer'
 import Voorstellingbeheer from './components/Voorstellingbeheer'
 import Zaalbeheer from './components/Zaalbeheer'
+import Kijkwijzerbeheer from './components/Kijkwijzerbeheer'
 import axios from 'axios'
 
 import VueCarousel from 'vue-carousel';
@@ -57,7 +58,8 @@ const router = new VueRouter({
     {path: '/Programma', component: Programma},
     {path: '/Filmbeheer', component: Filmbeheer},
     {path: '/Voorstellingbeheer', component: Voorstellingbeheer},
-    {path: '/Zaalbeheer', component: Zaalbeheer}
+    {path: '/Zaalbeheer', component: Zaalbeheer},
+    {path: '/Kijkwijzerbeheer', component: Kijkwijzerbeheer}
   ]
 });
 
@@ -69,28 +71,20 @@ axios.defaults.headers.get['Accepts'] = 'application/json'
 new Vue({
   router,
   template: `
-  <body style="background-color: slategray;">
-    <div id="app" style="margin-left: 50px; margin-right: 50px; background-color: slategray">
+  <body style=" min-height: 100%; margin: 0; padding: 0; background-color: slategray;" >
+    <div id="app" style="margin-left: 50px; margin-right: 50px; height: 100%; background-color: slategray">
       <br>
-        <h1 align="center">Welkom bij Retro Cinema</h1><span></span><img src="../src/assets/retrocinema.jpg" align="right" style="height: 150px; width: 150px;" alt="Logo" />
-        <b-button-group class="buttongroep">
-        <b-button><router-link to="/">Home</router-link></b-button>
-        <b-button><router-link to="/Users">Users</router-link></b-button>        
-        <b-button><router-link to="/Programma">Programma</router-link></b-button> 
-        <b-button><router-link to="/Beheer">Beheer</router-link></b-button>
-        </b-button-group>
+        <h1 align="center" style="text-shadow: 2px 2px black; color: darkslategray">Welkom bij Retro Cinema</h1><span></span>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8pa1FjycikINvILwSirlHdSnfPvs6NZaJ79lUNcJqbfcVodD5"  
+        align="right" style="height: 150px; width: 150px; box-shadow: 10px 10px 5px black;" alt="Logo">
+        <button style=""><router-link to="/">Home</router-link></button>
+        <button><router-link to="/Users">Users</router-link></button>        
+        <button><router-link to="/Programma">Programma</router-link></button> 
+        <button><router-link to="/Beheer">Beheer</router-link></button>
       <router-view></router-view>
     </div>
+    <br><br><br>
   </body>
-  <style>
-  buttongroep {
-    background-color: aquamarine;
-  }
-</style>
-  
   `,
-
-
 }).$mount('#app')
-
 

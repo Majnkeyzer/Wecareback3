@@ -3,6 +3,7 @@
     <br>
     <button><router-link to="/Filmbeheer">Filmbeheer</router-link></button>
     <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
+    <button><router-link to="/Kijkwijzerbeheer">Kijkwijzerbeheer</router-link></button>
     <br><br>
     <h1>Voorstellingbeheer</h1>
     <div id="voorstellingController" style="padding-top: 2em">
