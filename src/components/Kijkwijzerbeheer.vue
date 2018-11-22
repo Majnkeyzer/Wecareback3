@@ -5,12 +5,13 @@
     <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
     <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
     <br><br>
-    <h1>Zaalbeheer</h1>
+    <h1>Kijkwijzerbeheer</h1>
     <div id="KijkwijzerController" style="padding-top: 2em">
 
       <div class="alert alert-danger" v-if="!isValid">
         <ul>
-          <li v-show="!validation.kijkwijzertitel">Kijkwijzertitel is verplicht.</li>
+          <li v-show="!validation.tekst">Kijkwijzertitel is verplicht.</li>
+          <li v-show="!validation.symbool">Kijkwijzertitel is verplicht.</li>
         </ul>
       </div>
 
@@ -18,13 +19,18 @@
 
         <div class="form-group">
           <label for="kijkwijzertitel">Kijkwijzertitel:</label>
-          <input v-model="newKijkwijzer.kijkwijzertitel" type="text" id="kijkwijzertitel" name="kijkwijzertitel" class="form-control">
+          <input v-model="newKijkwijzer.tekst" type="text" id="kijkwijzertitel" name="kijkwijzertitel" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="symbool">Symbool:</label>
+          <input v-model="newKijkwijzer.symbool" type="text" id="symbool" name="symbool" class="form-control">
         </div>
 
         <div class="form-group">
           <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg Kijkwijzer toe</button>
 
-          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditKijkwijzer(newKijkwijzer.kijkwijzerid)">VeranderKijkwijzer</button>
+          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditKijkwijzer(newKijkwijzer.kwid)">VeranderKijkwijzer</button>
         </div>
 
       </form>
@@ -36,16 +42,19 @@
       <table class="table">
         <thead>
         <th>ID</th>
-        <th>KIJKWIJZER</th>
+        <th>KIJKWIJZERTITEL</th>
+        <th>SYMBOOL</th>
+
         </thead>
 
         <tbody>
         <tr v-for="kijkwijzer in kijkwijzers">
-          <td>{{ kijkwijzer.kijkwijzerid }}</td>
-          <td>{{ kijkwijzer.kijkwijzertitel }}</td>
+          <td>{{ kijkwijzer.kwid }}</td>
+          <td>{{ kijkwijzer.tekst }}</td>
+          <td>{{ kijkwijzer.symbool }}</td>
           <td>
-            <button class="btn btn-default btn-sm" @click="ShowKijkwijzer(kijkwijzer.kijkwijzerid)">Aanpassen</button>
-            <button class="btn btn-danger btn-sm" @click="RemoveKijkwijzer(kijkwijzer.kijkwijzerid)">Verwijderen</button>
+            <button class="btn btn-default btn-sm" @click="ShowKijkwijzer(kijkwijzer.kwid)">Aanpassen</button>
+            <button class="btn btn-danger btn-sm" @click="RemoveKijkwijzer(kijkwijzer.kwid)">Verwijderen</button>
           </td>
         </tr>
         </tbody>
@@ -66,8 +75,9 @@
     data() {
       return {
         newKijkwijzer: {
-          kijkwijzerid: '',
-          kijkwijzertitel: '',
+          kwid: '',
+          tekst: '',
+          symbool: ''
         },
         kijkwijzers: [],
 
@@ -86,21 +96,21 @@
       }
       ,
 
-      RemoveKijkwijzer(kijkwijzerid) {
+      RemoveKijkwijzer(kwid) {
         var ConfirmBox = confirm("Weet u zeker dat u deze Kijkwijzer wilt verwijderen?")
 
-        if (ConfirmBox) axios.delete('http://localhost:8080/kijkwijzer/delete/'+ kijkwijzerid)
+        if (ConfirmBox) axios.delete('http://localhost:8080/kijkwijzer/delete/'+ kwid)
 
         this.fetchKijkwijzer()
       }
       ,
 
-      EditKijkwijzer(kijkwijzerid) {
+      EditKijkwijzer(kwid) {
         var kijkwijzer = this.newKijkwijzer
 
-        this.newKijkwijzer = {kijkwijzerid: '', kijkwijzertitel: ''}
+        this.newKijkwijzer = {kwid: '', tekst: '', symbool: ''}
 
-        axios.put('http://localhost:8080/Zaal/update/' + kijkwijzerid, kijkwijzer, function (data) {
+        axios.put('http://localhost:8080/kijkwijzer/update/' + kwid, kijkwijzer, function (data) {
           console.log(data)
         })
 
@@ -111,13 +121,14 @@
       }
       ,
 
-      ShowKijkwijzer(kijkwijzerid) {
+      ShowKijkwijzer(kwid) {
         this.edit = true
 
-        axios.get('http://localhost:8080/kijkwijzer/getById/'+ kijkwijzerid)
+        axios.get('http://localhost:8080/kijkwijzer/getById/'+ kwid)
           .then(response => {
-            this.newKijkwijzer.kijkwijzerid = response.data.kijkwijzerid
-            this.newKijkwijzer.kijkwijzertitel = response.data.kijkwijzertitel
+            this.newKijkwijzer.kwid = response.data.kwid
+            this.newKijkwijzer.tekst = response.data.tekst
+            this.newKijkwijzer.symbool = response.data.symbool
           });
       },
 
@@ -136,7 +147,7 @@
           self.success = false
         }, 5000)
 
-        this.newKijkwijzer = {kijkwijzertitel: ''}
+        this.newKijkwijzer = {tekst: '', symbool: ''}
         this.fetchKijkwijzer()
 
       }
@@ -147,7 +158,8 @@
     computed: {
       validation(){
         return {
-          kijkwijzertitel: !!this.newKijkwijzer.kijkwijzertitel.trim(),
+          tekst: !!this.newKijkwijzer.tekst.trim(),
+          symbool: !!this.newKijkwijzer.symbool.trim()
         }
       }
       ,

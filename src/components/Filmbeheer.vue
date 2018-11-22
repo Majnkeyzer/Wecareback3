@@ -72,18 +72,8 @@
 
         <div class="form-group">
           <label for="kijkwijzer">Kijkwijzer:</label>
-          <select v-model="newFilm.kijkwijzer" id="kijkwijzer" name="kijkwijzer" class="form-control">
-            <option>Alle leeftijden</option>
-            <option>6 jaar en ouder</option>
-            <option>9 jaar en ouder</option>
-            <option>12 jaar en ouder</option>
-            <option>16 jaar en ouder</option>
-            <option>Geweld</option>
-            <option>Seks</option>
-            <option>Angst</option>
-            <option>Discriminatie</option>
-            <option>Drugs</option>
-            <option>Grof taal gebruik</option>
+          <select v-model="newFilm.kijkwijzer" id="kijkwijzer" name="kijkwijzer" class="form-control" multiple>
+            <option v-for="kijkwijzer in kijkwijzers">{{kijkwijzer.tekst}}</option>
           </select>
 
         </div>
@@ -147,11 +137,13 @@
   export default {
     mounted() {
       this.fetchFilm()
+      this.fetchKijkwijzer()
     },
     name: "Filmbeheer",
     data() {
       return {
         msg:'Filmbeheer',
+        kijkwijzers: [],
         newFilm: {
           filmid: '',
           titel: '',
@@ -160,7 +152,7 @@
           imax: '',
           ddd: '',
           extralang: '',
-          kijkwijzer: '',
+          kijkwijzer: [],
           datumBeschikbaar: '',
           afloopDatum: '',
         },
@@ -177,6 +169,15 @@
           });
       }
       ,
+
+      fetchKijkwijzer() {
+        axios.get('http://localhost:8080/kijkwijzer/getAll')
+          .then(response => {
+            this.kijkwijzers = response.data;
+          });
+      }
+      ,
+
       RemoveFilm(filmid) {
         var ConfirmBox = confirm("Weet u zeker dat u deze Film wilt verwijderen?")
         if (ConfirmBox) axios.delete('http://localhost:8080/film/delete/'+ filmid)
@@ -185,7 +186,7 @@
       ,
       EditFilm(filmid) {
         var film = this.newFilm
-        this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: '', datumBeschikbaar: '',afloopDatum: ''}
+        this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: ''}
         axios.put('http://localhost:8080/film/update/' + filmid, film, function (data) {
           console.log(data)
         })
@@ -221,7 +222,7 @@
         setTimeout(function () {
           self.success = false
         }, 5000)
-        this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: '', datumBeschikbaar: '',afloopDatum: ''}
+        this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: ''}
         this.fetchFilm()
       }
     }
