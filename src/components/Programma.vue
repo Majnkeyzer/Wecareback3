@@ -1,76 +1,76 @@
 <template>
   <body style="background-color: slategray;">
 
-  <br>
-  <br>
+    <br>
+    <br>
 
-  <div class="Programma">
-    <p>Deze week in Retro Cinema</p>
-    <b-form inline>
-      <b-form-select v-model="selected" :options="options" class="dropdown" size="sm" />
-    </b-form>
-  </div>
-  <!--<div>Selected: <strong>{{ options }} </strong></div>-->
-
-
-  <b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
+    <div class="Programma">
+      <p>Deze week in Retro Cinema</p>
+      <b-form inline>
+        <b-form-select v-model="selected" :options="options" class="dropdown" size="sm" />
+      </b-form>
+    </div>
+    <!--<div>Selected: <strong>{{ options }} </strong></div>-->
 
 
-  <br>
-  <h2 align="center">Binnenkort in Retro Cinema</h2>
+      <b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
 
-  <!-- CAROUSEL CODE HIERONDER -->
-  <div align="center">
-    <b-carousel id="carousel1"
-                style="text-shadow: 1px 1px 2px #333; width: 280px; height: 160px; margin-bottom: 50px;"
-                controls
-                indicators
-                background="#ababab"
-                :interval="5000"
-                v-model="slide"
-                @sliding-start="onSlideStart"
-                @sliding-end="onSlideEnd"
 
-    >
+    <br>
+    <h2 align="center">Binnenkort in Retro Cinema</h2>
 
-      <!-- Text slides with image -->
-      <b-carousel-slide>
-        <img slot="img" class="d-block img-fluid w-100"
-             src="../assets/creed2.jpg" alt="image slot"
-             style="width: 280px; height: 160px;"/>
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <img slot="img" class="d-block img-fluid w-100"
-             src="../assets/dunkirk.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <img slot="img" class="d-block img-fluid w-100"
-             src="../assets/fantasticbeasts.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <img slot="img" class="d-block img-fluid w-100"
-             src="../assets/firstman.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <img slot="img" class="d-block img-fluid w-100"
-             src="../assets/halloween.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <img slot="img" class="d-block img-fluid w-100"
-             src="../assets/hunterkiller.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
-      </b-carousel-slide>
-    </b-carousel>
-    <!--    <p class="mt-4">
-          Slide #: {{ slide }}<br>
-          Sliding: {{ sliding }}
-        </p>
-    -->
-  </div>
+    <!-- CAROUSEL CODE HIERONDER -->
+    <div align="center">
+      <b-carousel id="carousel1"
+                  style="text-shadow: 1px 1px 2px #333; width: 280px; height: 160px; margin-bottom: 50px;"
+                  controls
+                  indicators
+                  background="#ababab"
+                  :interval="5000"
+                  v-model="slide"
+                  @sliding-start="onSlideStart"
+                  @sliding-end="onSlideEnd"
+
+      >
+
+        <!-- Text slides with image -->
+        <b-carousel-slide>
+          <img slot="img" class="d-block img-fluid w-100"
+               src="../assets/creed2.jpg" alt="image slot"
+               style="width: 280px; height: 160px;"/>
+        </b-carousel-slide>
+        <b-carousel-slide>
+          <img slot="img" class="d-block img-fluid w-100"
+               src="../assets/dunkirk.jpg" alt="image slot"
+               style="width: 280px; height: 160px;">
+        </b-carousel-slide>
+        <b-carousel-slide>
+          <img slot="img" class="d-block img-fluid w-100"
+               src="../assets/fantasticbeasts.jpg" alt="image slot"
+               style="width: 280px; height: 160px;">
+        </b-carousel-slide>
+        <b-carousel-slide>
+          <img slot="img" class="d-block img-fluid w-100"
+               src="../assets/firstman.jpg" alt="image slot"
+               style="width: 280px; height: 160px;">
+        </b-carousel-slide>
+        <b-carousel-slide>
+          <img slot="img" class="d-block img-fluid w-100"
+               src="../assets/halloween.jpg" alt="image slot"
+               style="width: 280px; height: 160px;">
+        </b-carousel-slide>
+        <b-carousel-slide>
+          <img slot="img" class="d-block img-fluid w-100"
+               src="../assets/hunterkiller.jpg" alt="image slot"
+               style="width: 280px; height: 160px;">
+        </b-carousel-slide>
+      </b-carousel>
+      <!--    <p class="mt-4">
+            Slide #: {{ slide }}<br>
+            Sliding: {{ sliding }}
+          </p>
+      -->
+    </div>
 
   </body>
 </template>
@@ -126,8 +126,10 @@
         const week = Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
         return week;
       },
+
     },
-    computed: {
+
+     computed: {
       moviesList() {
         return this.films.filter((movie) => {
             let movieDate = new Date(movie.Datum);
@@ -149,6 +151,7 @@
         });
     }
   }
+
 </script>
 
 <style >
@@ -164,12 +167,12 @@
     border: 5px dimgray;
     margin: 0 auto;
   }
+
   .dropdown {
     text-align: center;
     font-size: 13px;
     font-family: Arial, Helvetica;
     color: black;
     background-color: whitesmoke;
-  }
+    }
 </style>
-

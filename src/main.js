@@ -73,14 +73,24 @@ new Vue({
     <div id="app" style="margin-left: 50px; margin-right: 50px; background-color: slategray">
       <br>
         <h1 align="center">Welkom bij Retro Cinema</h1><span></span><img src="../src/assets/retrocinema.jpg" align="right" style="height: 150px; width: 150px;" alt="Logo" />
-        <button><router-link to="/">Home</router-link></button>
-        <button><router-link to="/Users">Users</router-link></button>        
-        <button><router-link to="/Programma">Programma</router-link></button> 
-        <button><router-link to="/Beheer">Beheer</router-link></button>
+        <b-button-group class="buttongroep">
+        <b-button><router-link to="/">Home</router-link></b-button>
+        <b-button><router-link to="/Users">Users</router-link></b-button>        
+        <b-button><router-link to="/Programma">Programma</router-link></b-button> 
+        <b-button><router-link to="/Beheer">Beheer</router-link></b-button>
+        </b-button-group>
       <router-view></router-view>
     </div>
   </body>
+  <style>
+  buttongroep {
+    background-color: aquamarine;
+  }
+</style>
+  
   `,
+
+
 }).$mount('#app')
 
 
