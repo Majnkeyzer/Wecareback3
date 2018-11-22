@@ -3,6 +3,8 @@
     <br>
     <button><router-link to="/Filmbeheer">Filmbeheer</router-link></button>
     <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
+    <button><router-link to="/Kijkwijzerbeheer">Kijkwijzerbeheer</router-link></button>
+
     <br><br>
     <h1>Zaalbeheer</h1>
     <div id="ZaalController" style="padding-top: 2em">
@@ -28,7 +30,7 @@
 
 
         <div class="form-group">
-          <label>Type Film:</label>
+          <label>Type Zaal:</label>
           <br>
           <b-form-checkbox id="imax"
                            v-model="newZaal.imaxZaal"
