@@ -3,6 +3,7 @@
     <br>
     <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
     <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
+    <button><router-link to="/Kijkwijzerbeheer">Kijkwijzerbeheer</router-link></button>
     <br><br>
     <h1>Filmbeheer</h1>
     <div id="filmController" style="padding-top: 2em">
@@ -145,11 +146,13 @@
   export default {
     mounted() {
       this.fetchFilm()
+      this.fetchKijkwijzer()
     },
     name: "Filmbeheer",
 
     data() {
       return {
+        kijkwijzers: [],
         newFilm: {
           filmid: '',
           titel: '',
@@ -175,6 +178,14 @@
         axios.get('http://localhost:8080/film/getAll')
           .then(response => {
             this.films = response.data;
+          });
+      }
+      ,
+
+      fetchKijkwijzer() {
+        axios.get('http://localhost:8080/kijkwijzer/getAll')
+          .then(response => {
+            this.kijkwijzers = response.data;
           });
       }
       ,
