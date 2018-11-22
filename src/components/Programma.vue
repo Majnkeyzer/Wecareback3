@@ -4,7 +4,7 @@
     <br>
     <br>
 
-    <div>
+    <div class="Programma">
       <p>Deze week in Retro Cinema</p>
       <b-form inline>
         <b-form-select v-model="selected" :options="options" class="dropdown" size="sm" />
@@ -76,6 +76,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   export default {
     name: "films",
     data() {
