@@ -3,8 +3,10 @@
     <br>
     <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
     <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
+    <button><router-link to="/Kijkwijzerbeheer">Kijkwijzerbeheer</router-link></button>
     <br><br>
-    <h1>Filmbeheer</h1>
+    <h1> {{ msg }}</h1>
+    <!--<h1>Filmbeheer</h1>-->
     <div id="filmController" style="padding-top: 2em">
 
       <div class="alert alert-danger" v-if="!isValid">
@@ -18,8 +20,8 @@
       <form @submit.prevent="AddNewFilm">
 
         <!--<div class="form-group">-->
-          <!--<label for="id">ID:</label>-->
-          <!--<input v-model="newFilm.filmid" type="text" id="id" name="id" class="form-control">-->
+        <!--<label for="id">ID:</label>-->
+        <!--<input v-model="newFilm.filmid" type="text" id="id" name="id" class="form-control">-->
         <!--</div>-->
 
         <div class="form-group">
@@ -46,7 +48,7 @@
                            name="imax"
                            value="true"
                            unchecked-value="false"
-                           >
+          >
             Imax
           </b-form-checkbox>
           <b-form-checkbox id="ddd"
@@ -54,7 +56,7 @@
                            name="ddd"
                            value="true"
                            unchecked-value="false"
-                           >
+          >
             3D
           </b-form-checkbox>
           <b-form-checkbox id="extralang"
@@ -68,21 +70,21 @@
 
         </div>
 
-          <div class="form-group">
-            <label for="kijkwijzer">Kijkwijzer:</label>
-            <select v-model="newFilm.kijkwijzer" id="kijkwijzer" name="kijkwijzer" class="form-control">
-              <option>Alle leeftijden</option>
-              <option>6 jaar en ouder</option>
-              <option>9 jaar en ouder</option>
-              <option>12 jaar en ouder</option>
-              <option>16 jaar en ouder</option>
-              <option>Geweld</option>
-              <option>Seks</option>
-              <option>Angst</option>
-              <option>Discriminatie</option>
-              <option>Drugs</option>
-              <option>Grof taal gebruik</option>
-            </select>
+        <div class="form-group">
+          <label for="kijkwijzer">Kijkwijzer:</label>
+          <select v-model="newFilm.kijkwijzer" id="kijkwijzer" name="kijkwijzer" class="form-control">
+            <option>Alle leeftijden</option>
+            <option>6 jaar en ouder</option>
+            <option>9 jaar en ouder</option>
+            <option>12 jaar en ouder</option>
+            <option>16 jaar en ouder</option>
+            <option>Geweld</option>
+            <option>Seks</option>
+            <option>Angst</option>
+            <option>Discriminatie</option>
+            <option>Drugs</option>
+            <option>Grof taal gebruik</option>
+          </select>
 
         </div>
         <div class="form-group">
@@ -147,9 +149,9 @@
       this.fetchFilm()
     },
     name: "Filmbeheer",
-
     data() {
       return {
+        msg:'Filmbeheer',
         newFilm: {
           filmid: '',
           titel: '',
@@ -163,14 +165,11 @@
           afloopDatum: '',
         },
         films: [],
-
         success: false,
-
         edit: false
       }
     },
     methods: {
-
       fetchFilm() {
         axios.get('http://localhost:8080/film/getAll')
           .then(response => {
@@ -178,35 +177,24 @@
           });
       }
       ,
-
       RemoveFilm(filmid) {
         var ConfirmBox = confirm("Weet u zeker dat u deze Film wilt verwijderen?")
-
         if (ConfirmBox) axios.delete('http://localhost:8080/film/delete/'+ filmid)
-
         this.fetchFilm()
       }
       ,
-
       EditFilm(filmid) {
         var film = this.newFilm
-
         this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: '', datumBeschikbaar: '',afloopDatum: ''}
-
         axios.put('http://localhost:8080/film/update/' + filmid, film, function (data) {
           console.log(data)
         })
-
         this.fetchFilm()
-
         this.edit = false
-
       }
       ,
-
       ShowFilm(filmid) {
         this.edit = true
-
         axios.get('http://localhost:8080/film/getById/'+ filmid)
           .then(response => {
             this.newFilm.filmid = response.data.filmid
@@ -221,7 +209,6 @@
             this.newFilm.afloopDatum = response.data.afloopDatum
           });
       },
-
       AddNewFilm(){
         axios.post('http://localhost:8080/film/save', this.newFilm)
           .then(response => {
@@ -229,21 +216,16 @@
           }, error => {
             console.log(error);
           });
-
         self = this
         this.success = true
         setTimeout(function () {
           self.success = false
         }, 5000)
-
         this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: '', datumBeschikbaar: '',afloopDatum: ''}
         this.fetchFilm()
-
       }
-
     }
     ,
-
     computed: {
       validation() {
         return {
@@ -253,7 +235,6 @@
         }
       }
       ,
-
       isValid() {
         var validation = this.validation
         return Object.keys(validation).every(function (key) {
@@ -262,9 +243,7 @@
       }
     }
   }
-
 </script>
 
 <style scoped>
-
 </style>
