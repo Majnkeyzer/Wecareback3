@@ -59,18 +59,20 @@
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
   }
 
   .div2{
     margin-right: 900px;
     width: 350px;
     align: left;
+    background-image:  url(../assets/hexagon-background.png);
   }
 
   .div1{
     margin-right: 900px;
     width: 350px;
     align: left;
+    background-image:  url(../assets/hexagon-background.png);
   }
 </style>
