@@ -26,7 +26,7 @@
         <div class="form-group">
           <label for="titel">Titel:</label>
           <select v-model="newVoorstelling.film"  id="titel" name="titel" class="form-control">
-            <option v-for="film in films">{{film.titel}}</option>
+            <option v-for="film in filmsvoor">{{film.titel}}</option>
           </select>
         </div>
 
@@ -43,7 +43,7 @@
         <div class="form-group">
           <label for="zalen">Zaal:</label>
           <select v-model="newVoorstelling.zalen" id="zalen" name="zalen" class="form-control">
-            <option v-for="zaal in zalen">{{zaal.zaalNummer}}</option>
+            <option v-for="zaal in zalenvoor">{{zaal.zaalNummer}}</option>
           </select>
         </div>
 
@@ -74,7 +74,7 @@
           <td>{{ voorstelling.film }}</td>
           <td>{{ voorstelling.dag }}</td>
           <td>{{ voorstelling.tijd }}</td>
-          <td>{{ voorstelling.zalen }}</td>
+          <td>{{ voorstelling.zaal }}</td>
           <td>
             <button class="btn btn-default btn-sm" @click="ShowVoorstelling(voorstelling.id)">Aanpassen</button>
             <button class="btn btn-danger btn-sm" @click="RemoveVoorstelling(voorstelling.id)">Verwijderen</button>
@@ -99,8 +99,6 @@
 
       data() {
         return {
-          zalen: [],
-          films: [],
           newVoorstelling: {
             id: '',
             film: '',
@@ -109,7 +107,8 @@
             zalen: ''
           },
           voorstellingen: [],
-
+          zalenvoor: [],
+          filmsvoor: [],
 
           success: false,
 
@@ -120,7 +119,7 @@
             fetchZalen() {
               axios.get('http://localhost:8080/Zaal/getAll')
                 .then(response => {
-                  this.zalen = response.data;
+                  this.zalenvoor = response.data;
                 });
             }
             ,
@@ -128,7 +127,7 @@
             fetchFilm() {
               axios.get('http://localhost:8080/film/getAll')
                 .then(response => {
-                  this.films = response.data;
+                  this.filmsvoor = response.data;
                 });
             }
             ,
@@ -181,6 +180,7 @@
         ,
 
           AddNewVoorstelling() {
+
             axios.post('http://localhost:8080/voorstelling/save', this.newVoorstelling)
                     .then(response => {
                       console.log(response);

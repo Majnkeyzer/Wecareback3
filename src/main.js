@@ -77,7 +77,7 @@ new Vue({
         <h1 align="center" style="text-shadow: 2px 2px black; color: darkslategray">Welkom bij Retro Cinema</h1><span></span>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8pa1FjycikINvILwSirlHdSnfPvs6NZaJ79lUNcJqbfcVodD5"  
         align="right" style="height: 150px; width: 150px; box-shadow: 10px 10px 5px black;" alt="Logo">
-        <button style=""><router-link to="/">Home</router-link></button>
+        <button><router-link to="/">Home</router-link></button>
         <button><router-link to="/Users">Users</router-link></button>        
         <button><router-link to="/Programma">Programma</router-link></button> 
         <button><router-link to="/Beheer">Beheer</router-link></button>

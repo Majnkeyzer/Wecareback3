@@ -53,7 +53,7 @@
         <div class="form-group">
           <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg zaal toe</button>
 
-          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditZaal(newZaal.zaalid)">Verander Zaal</button>
+          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditZaal(newZaal.id)">Verander Zaal</button>
         </div>
 
       </form>
@@ -73,14 +73,14 @@
 
         <tbody>
         <tr v-for="zaal in zalen">
-          <td>{{ zaal.zaalid }}</td>
+          <td>{{ zaal.id }}</td>
           <td>{{ zaal.zaalNummer }}</td>
           <td>{{ zaal.aantalStoelen }}</td>
           <td>{{ zaal.imaxZaal }}</td>
           <td>{{ zaal.drieDZaal }}</td>
           <td>
-            <button class="btn btn-default btn-sm" @click="ShowZaal(zaal.zaalid)">Aanpassen</button>
-            <button class="btn btn-danger btn-sm" @click="RemoveZaal(zaal.zaalid)">Verwijderen</button>
+            <button class="btn btn-default btn-sm" @click="ShowZaal(zaal.id)">Aanpassen</button>
+            <button class="btn btn-danger btn-sm" @click="RemoveZaal(zaal.id)">Verwijderen</button>
           </td>
         </tr>
         </tbody>
@@ -101,7 +101,7 @@
     data() {
       return {
         newZaal: {
-          zaalid: '',
+          id: '',
           zaalNummer: '',
           aantalStoelen: '',
           imaxZaal: '',
@@ -124,21 +124,21 @@
       }
       ,
 
-      RemoveZaal(zaalid) {
+      RemoveZaal(id) {
         var ConfirmBox = confirm("Weet u zeker dat u deze Zaal wilt verwijderen?")
 
-        if (ConfirmBox) axios.delete('http://localhost:8080/Zaal/delete/'+ zaalid)
+        if (ConfirmBox) axios.delete('http://localhost:8080/Zaal/delete/'+ id)
 
         this.fetchZalen()
       }
       ,
 
-      EditZaal(zaalid) {
+      EditZaal(id) {
         var zaal = this.newZaal
 
-        this.newZaal = {zaalid: '', zaalNummer: '', aantalStoelen: '', imaxZaal: '', drieDZaal: ''}
+        this.newZaal = {id: '', zaalNummer: '', aantalStoelen: '', imaxZaal: '', drieDZaal: ''}
 
-        axios.put('http://localhost:8080/Zaal/update/' + zaalid, zaal, function (data) {
+        axios.put('http://localhost:8080/Zaal/update/' + id, zaal, function (data) {
           console.log(data)
         })
 
@@ -149,12 +149,12 @@
       }
       ,
 
-      ShowZaal(zaalid) {
+      ShowZaal(id) {
         this.edit = true
 
-        axios.get('http://localhost:8080/Zaal/getById/'+ zaalid)
+        axios.get('http://localhost:8080/Zaal/getById/'+ id)
           .then(response => {
-          this.newZaal.zaalid = response.data.zaalid
+          this.newZaal.id = response.data.id
           this.newZaal.zaalNummer = response.data.zaalNummer
           this.newZaal.aantalStoelen = response.data.aantalStoelen
           this.newZaal.imaxZaal = response.data.imaxZaal
@@ -177,7 +177,7 @@
           self.success = false
         }, 5000)
 
-        this.newZaal = {zaalNummer: '', aantalStoelen: '', imaxZaal: '', drieDZaal: ''}
+        this.newZaal = {id: '', zaalNummer: '', aantalStoelen: '', imaxZaal: '', drieDZaal: ''}
         this.fetchZalen()
 
       }
