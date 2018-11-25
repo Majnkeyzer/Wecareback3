@@ -1,15 +1,17 @@
 <template>
-  <body style="background-color: slategray;">
+
+  <body>
 
   <br>
   <br>
 
   <div class="Programma">
-    <p>Deze week in Retro Cinema</p>
-    <b-form inline>
+    <h5 align="left">Deze week in Retro Cinema</h5>
+    <b-form inline align="left">
       <b-form-select v-model="selected" :options="options" class="dropdown" size="sm" />
     </b-form>
   </div>
+
   <!--<div>Selected: <strong>{{ options }} </strong></div>-->
 
 
@@ -152,6 +154,10 @@
 </script>
 
 <style >
+  body {
+    background-color: slategray;
+  }
+
   .tabel {
     width: 500px;
     height: 50px;
@@ -163,12 +169,14 @@
     line-height: 1.4em;
     border: 5px dimgray;
     margin: 0 auto;
+    background-image:  url(../assets/hexagon-background.png);
   }
+
   .dropdown {
     text-align: center;
     font-size: 13px;
     font-family: Arial, Helvetica;
     color: black;
-    background-color: whitesmoke;
+    background-color: lightgray;
   }
 </style>

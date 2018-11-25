@@ -74,17 +74,25 @@ new Vue({
   <body style=" min-height: 100%; margin: 0; padding: 0; background-color: slategray;" >
     <div id="app" style="margin-left: 50px; margin-right: 50px; height: 100%; background-color: slategray">
       <br>
-        <h1 align="center" style="text-shadow: 2px 2px black; color: darkslategray">Welkom bij Retro Cinema</h1><span></span>
+        <h1 align="center" style="text-shadow: 2px 2px white; color: darkslategray">Welkom bij Retro Cinema</h1><span></span>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8pa1FjycikINvILwSirlHdSnfPvs6NZaJ79lUNcJqbfcVodD5"  
         align="right" style="height: 150px; width: 150px; box-shadow: 10px 10px 5px black;" alt="Logo">
-        <button><router-link to="/">Home</router-link></button>
-        <button><router-link to="/Users">Users</router-link></button>        
-        <button><router-link to="/Programma">Programma</router-link></button> 
-        <button><router-link to="/Beheer">Beheer</router-link></button>
+       <div> 
+        <b-button-group>
+        <b-button><router-link to="/" style="color:white;">Home</router-link></b-button>
+        <b-button><router-link to="/Users" style="color:white;">Users</router-link></b-button>        
+        <b-button><router-link to="/Programma" style="color:white;">Programma</router-link></b-button> 
+        <b-button><router-link to="/Beheer" style="color:white;">Beheer</router-link></b-button>
+        </b-button-group>
+        </div>
       <router-view></router-view>
     </div>
     <br><br><br>
+    <footer style="border-top: 1px solid ;margin: 40px auto 0px; width: 100%; padding: 30px 0px; text-align: center;">
+            &copy; RetroCinema 2018 
+        </footer>
   </body>
+
   `,
 }).$mount('#app')
 
