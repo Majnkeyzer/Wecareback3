@@ -12,10 +12,12 @@
     </div>
 
     <div align="center">
-      <button><router-link to="/Filmbeheer">Filmbeheer</router-link></button>
-      <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
-      <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
-      <button><router-link to="/Kijkwijzerbeheer">Kijkwijzerbeheer</router-link></button>
+      <b-button-group>
+      <b-button><router-link to="/Filmbeheer" style="color:white;">Filmbeheer</router-link></b-button>
+      <b-button><router-link to="/Voorstellingbeheer" style="color:white;">Voorstellingbeheer</router-link></b-button>
+      <b-button><router-link to="/Zaalbeheer" style="color:white;">Zaalbeheer</router-link></b-button>
+      <b-button><router-link to="/Kijkwijzerbeheer" style="color:white;">Kijkwijzerbeheer</router-link></b-button>
+       </b-button-group>
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
 

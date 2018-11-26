@@ -91,7 +91,7 @@
         <div class="form-group">
           <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg film toe</button>
 
-          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newFilm.filmid)">Pas film aan</button>
+          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newFilm.id)">Pas film aan</button>
         </div>
 
       </form>
@@ -113,7 +113,7 @@
 
         <tbody>
         <tr v-for="film in films">
-          <td>{{ film.filmid }}</td>
+          <td>{{ film.id }}</td>
           <td>{{ film.titel }}</td>
           <td>{{ film.imax }}</td>
           <td>{{ film.ddd }}</td>
@@ -121,8 +121,8 @@
           <td>{{ film.datumBeschikbaar }}</td>
           <td>{{ film.afloopDatum }}</td>
           <td>
-            <button class="btn btn-default btn-sm" @click="ShowFilm(film.filmid)">Aanpassen</button>
-            <button class="btn btn-danger btn-sm" @click="RemoveFilm(film.filmid)">Verwijderen</button>
+            <button class="btn btn-default btn-sm" @click="ShowFilm(film.id)">Aanpassen</button>
+            <button class="btn btn-danger btn-sm" @click="RemoveFilm(film.id)">Verwijderen</button>
           </td>
         </tr>
         </tbody>
@@ -145,7 +145,7 @@
         msg:'Filmbeheer',
         kijkwijzers: [],
         newFilm: {
-          filmid: '',
+          id: '',
           titel: '',
           samenvatting: '',
           poster: '',
@@ -178,27 +178,27 @@
       }
       ,
 
-      RemoveFilm(filmid) {
+      RemoveFilm(id) {
         var ConfirmBox = confirm("Weet u zeker dat u deze Film wilt verwijderen?")
-        if (ConfirmBox) axios.delete('http://localhost:8080/film/delete/'+ filmid)
+        if (ConfirmBox) axios.delete('http://localhost:8080/film/delete/'+ id)
         this.fetchFilm()
       }
       ,
-      EditFilm(filmid) {
+      EditFilm(id) {
         var film = this.newFilm
-        this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: ''}
-        axios.put('http://localhost:8080/film/update/' + filmid, film, function (data) {
+        this.newFilm = {id: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: ''}
+        axios.put('http://localhost:8080/film/update/' + id, film, function (data) {
           console.log(data)
         })
         this.fetchFilm()
         this.edit = false
       }
       ,
-      ShowFilm(filmid) {
+      ShowFilm(id) {
         this.edit = true
-        axios.get('http://localhost:8080/film/getById/'+ filmid)
+        axios.get('http://localhost:8080/film/getById/'+ id)
           .then(response => {
-            this.newFilm.filmid = response.data.filmid
+            this.newFilm.id = response.data.id
             this.newFilm.titel = response.data.titel
             this.newFilm.samenvatting = response.data.samenvatting
             this.newFilm.poster = response.data.poster
@@ -222,7 +222,7 @@
         setTimeout(function () {
           self.success = false
         }, 5000)
-        this.newFilm = {filmid: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: ''}
+        this.newFilm = {id: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: ''}
         this.fetchFilm()
       }
     }
