@@ -18,6 +18,7 @@ import Filmbeheer from './components/Filmbeheer'
 import Voorstellingbeheer from './components/Voorstellingbeheer'
 import Zaalbeheer from './components/Zaalbeheer'
 import Kijkwijzerbeheer from './components/Kijkwijzerbeheer'
+import Filminformatie from './components/Filminformatie'
 import axios from 'axios'
 
 import VueCarousel from 'vue-carousel';
@@ -59,7 +60,8 @@ const router = new VueRouter({
     {path: '/Filmbeheer', component: Filmbeheer},
     {path: '/Voorstellingbeheer', component: Voorstellingbeheer},
     {path: '/Zaalbeheer', component: Zaalbeheer},
-    {path: '/Kijkwijzerbeheer', component: Kijkwijzerbeheer}
+    {path: '/Kijkwijzerbeheer', component: Kijkwijzerbeheer},
+    {path: '/Filminformatie', component: Filminformatie}
   ]
 });
 
