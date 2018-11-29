@@ -1,12 +1,11 @@
 <template>
 
   <body>
-
   <br>
   <br>
 
-  <div class="Programma">
-    <h5 align="left">Deze week in Retro Cinema</h5>
+   <div class="Programma">
+    <h2>Deze week in Retro Cinema</h2>
     <b-form inline align="left">
       <b-form-select v-model="selected" :options="options" class="dropdown" size="sm" />
     </b-form>
@@ -15,14 +14,14 @@
   <!--<div>Selected: <strong>{{ options }} </strong></div>-->
 
 
-  <b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
-
-
+  <b-table class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
   <br>
-  <h2 align="center">Binnenkort in Retro Cinema</h2>
+  <br>
+  <br>
+  <h2>Binnenkort in Retro Cinema</h2>
 
   <!-- CAROUSEL CODE HIERONDER -->
-  <div align="center">
+  <div align="left">
     <b-carousel id="carousel1"
                 style="text-shadow: 1px 1px 2px #333; width: 280px; height: 160px; margin-bottom: 50px;"
                 controls
@@ -159,16 +158,17 @@
   }
 
   .tabel {
-    width: 500px;
-    height: 50px;
     text-align: center;
+    height: 50px;
     font-size: 16px;
     font-family: Arial, Helvetica;
     color: black;
     background-color: lightgray;
     line-height: 1.4em;
-    border: 5px dimgray;
-    margin: 0 auto;
+    border: 10px dimgray;
+    margin-left:  auto;
+    margin-right: auto;
+    width: 40%;
     background-image:  url(../assets/hexagon-background.png);
   }
 
@@ -178,5 +178,12 @@
     font-family: Arial, Helvetica;
     color: black;
     background-color: lightgray;
+  }
+
+  h2 {
+    text-align: left;
+    font-size: 20px;
+    font-family: Arial, Helvetica;
+    color: black;
   }
 </style>
