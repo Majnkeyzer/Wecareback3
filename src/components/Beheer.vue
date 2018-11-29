@@ -17,6 +17,7 @@
       <b-button><router-link to="/Voorstellingbeheer" style="color:white;">Voorstellingbeheer</router-link></b-button>
       <b-button><router-link to="/Zaalbeheer" style="color:white;">Zaalbeheer</router-link></b-button>
       <b-button><router-link to="/Kijkwijzerbeheer" style="color:white;">Kijkwijzerbeheer</router-link></b-button>
+        <b-button><router-link to="/Filminformatie" style="color:white;">Filminformatie</router-link></b-button>
        </b-button-group>
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
