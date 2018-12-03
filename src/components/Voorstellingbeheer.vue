@@ -26,7 +26,7 @@
         <div class="form-group">
           <label for="titel">Titel:</label>
           <select v-model="newVoorstelling.film"  id="titel" name="titel" class="form-control">
-            <option v-for="film in filmsvoor">{{film.titel}}</option>
+            <option v-for="film in filmsvoor" v-bind:value="film.id">{{film.titel}}</option>
           </select>
         </div>
 
@@ -74,7 +74,7 @@
           <td>{{ voorstelling.film }}</td>
           <td>{{ voorstelling.dag }}</td>
           <td>{{ voorstelling.tijd }}</td>
-          <td>{{ voorstelling.zaal }}</td>
+          <td>{{ voorstelling.zalen }}</td>
           <td>
             <button class="btn btn-default btn-sm" @click="ShowVoorstelling(voorstelling.id)">Aanpassen</button>
             <button class="btn btn-danger btn-sm" @click="RemoveVoorstelling(voorstelling.id)">Verwijderen</button>
@@ -104,7 +104,7 @@
             film: '',
             dag: '',
             tijd: '',
-            zalen: ''
+            zalen: '',
           },
           voorstellingen: [],
           zalenvoor: [],
