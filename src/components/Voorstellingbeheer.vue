@@ -43,14 +43,14 @@
         <div class="form-group">
           <label for="zalen">Zaal:</label>
           <select v-model="newVoorstelling.zalen" id="zalen" name="zalen" class="form-control">
-            <option v-for="zaal in zalenvoor">{{zaal.zaalNummer}}</option>
+            <option v-for="zaal in zalenvoor" v-bind:value="zaal.id">{{zaal.zaalNummer}}</option>
           </select>
         </div>
 
         <div class="form-group">
           <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg voorstelling toe</button>
 
-          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditVoorstelling(newVoorstelling.id)">Verander Voorstelling</button>
+          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditVoorstelling(Voorstelling.id)">Verander Voorstelling</button>
         </div>
 
       </form>
@@ -171,7 +171,7 @@
             axios.get('http://localhost:8080/voorstelling/getById/' + id)
               .then(response => {
               this.newVoorstelling.id = response.data.id
-              this.newVoorstelling.film = response.data.film
+              this.newVoorstelling.films = response.data.film
               this.newVoorstelling.dag = response.data.dag
               this.newVoorstelling.tijd = response. data.tijd
               this.newVoorstelling.zalen = response.data.zalen
@@ -183,6 +183,7 @@
 
             axios.post('http://localhost:8080/voorstelling/save', this.newVoorstelling)
                     .then(response => {
+
                       console.log(response);
                     }, error => {
                       console.log(error);

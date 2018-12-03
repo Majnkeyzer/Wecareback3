@@ -7,11 +7,10 @@ import VueRouter from 'vue-router'
 import 'vue-resize/dist/vue-resize.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueMoment from 'vue-moment'
 
-
-
-import Users from './components/Users'
 import Beheer from './components/Beheer'
+import Reserveren from './components/Reserveren'
 import Programma from './components/Programma'
 import Home from './components/Home'
 import Filmbeheer from './components/Filmbeheer'
@@ -33,6 +32,7 @@ import bCarouselSlide from 'bootstrap-vue/es/components/carousel/carousel-slide'
 
 
 
+Vue.use(require('vue-moment'));
 Vue.component('b-carousel-slide',bCarouselSlide);
 Vue.component('b-carousel', bCarousel);
 Vue.component('b-dropdown', bDropdown);
@@ -54,14 +54,14 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     {path: '/', component: Home},
-    {path: '/Users', component: Users},
     {path: '/Beheer', component: Beheer},
     {path: '/Programma', component: Programma},
     {path: '/Filmbeheer', component: Filmbeheer},
     {path: '/Voorstellingbeheer', component: Voorstellingbeheer},
     {path: '/Zaalbeheer', component: Zaalbeheer},
     {path: '/Kijkwijzerbeheer', component: Kijkwijzerbeheer},
-    {path: '/Filminformatie', component: Filminformatie}
+    {path: '/Filminformatie', component: Filminformatie},
+    {path: '/Reserveren', component: Reserveren}
   ]
 });
 
@@ -81,9 +81,9 @@ new Vue({
         align="right" style="height: 150px; width: 150px; box-shadow: 10px 10px 5px black;" alt="Logo">
        <div> 
         <b-button-group>
-        <b-button><router-link to="/" style="color:white;">Home</router-link></b-button>
-        <b-button><router-link to="/Users" style="color:white;">Users</router-link></b-button>        
-        <b-button><router-link to="/Programma" style="color:white;">Programma</router-link></b-button> 
+        <b-button><router-link to="/" style="color:white;">Home</router-link></b-button>     
+        <b-button><router-link to="/Programma" style="color:white;">Programma</router-link></b-button>
+        <b-button><router-link to="/Reserveren" style="color:white;">Reserveren</router-link></b-button> 
         <b-button><router-link to="/Beheer" style="color:white;">Beheer</router-link></b-button>
         </b-button-group>
         </div>

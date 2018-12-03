@@ -24,6 +24,7 @@
     "firebase": "^5.5.9",
     "vue": "^2.5.2",
     "vue-carousel": "^0.14.0",
+    "vue-moment": "^4.0.0",
     "vue-multi-select": "^3.11.1",
     "vue-my-dropdown": "^2.1.0",
     "vue-resize": "^0.4.4",
