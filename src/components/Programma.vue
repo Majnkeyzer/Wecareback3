@@ -1,11 +1,12 @@
 <template>
 
   <body>
+
   <br>
   <br>
 
-   <div class="Programma">
-    <h2>Deze week in Retro Cinema</h2>
+  <div class="Programma">
+    <h5 align="left">Deze week in Retro Cinema</h5>
     <b-form inline align="left">
       <b-form-select v-model="selected" :options="options" class="dropdown" size="sm" />
     </b-form>
@@ -14,14 +15,14 @@
   <!--<div>Selected: <strong>{{ options }} </strong></div>-->
 
 
-  <b-table class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
+  <b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
+
+
   <br>
-  <br>
-  <br>
-  <h2>Binnenkort in Retro Cinema</h2>
+  <h2 align="center">Binnenkort in Retro Cinema</h2>
 
   <!-- CAROUSEL CODE HIERONDER -->
-  <div align="left">
+  <div align="center">
     <b-carousel id="carousel1"
                 style="text-shadow: 1px 1px 2px #333; width: 280px; height: 160px; margin-bottom: 50px;"
                 controls
@@ -96,19 +97,19 @@
         ],
         fields: [
           {
-            key: 'Film.title',
+            key: 'film.titel',
             label: 'Film'
           },
-          // {
-          //   key: 'Datum',
-          //   label: 'Datum'
-          // },
           {
-            key: 'Tijd',
+             key: 'dag',
+             label: 'Datum'
+           },
+           {
+            key: 'tijd',
             label: 'Tijd'
           },
           {
-            key: 'Zaal.zaalNummer',
+            key: 'zalen.zaalnummer',
             label: 'Zaal'
           }
         ],
@@ -124,14 +125,13 @@
       },
       calculateWeek(datum) {
         const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),0,1));
-        const week = Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
-        return week;
+        return Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
       },
     },
     computed: {
       moviesList() {
         return this.films.filter((movie) => {
-            let movieDate = new Date(movie.Datum);
+            let movieDate = new Date(movie.dag);
             let movieWeek = this.calculateWeek(movieDate);
             let thisWeek = this.calculateWeek(new Date());
             return (movieWeek == thisWeek) && (this.selected == movieDate.getDay()); //return de films van deze week en koppeling met de dropdown aan de nummers
@@ -156,34 +156,24 @@
   body {
     background-color: slategray;
   }
-
   .tabel {
-    text-align: center;
+    width: 500px;
     height: 50px;
+    text-align: center;
     font-size: 16px;
     font-family: Arial, Helvetica;
     color: black;
     background-color: lightgray;
     line-height: 1.4em;
-    border: 10px dimgray;
-    margin-left:  auto;
-    margin-right: auto;
-    width: 40%;
+    border: 5px dimgray;
+    margin: 0 auto;
     background-image:  url(../assets/hexagon-background.png);
   }
-
   .dropdown {
     text-align: center;
     font-size: 13px;
     font-family: Arial, Helvetica;
     color: black;
     background-color: lightgray;
-  }
-
-  h2 {
-    text-align: left;
-    font-size: 20px;
-    font-family: Arial, Helvetica;
-    color: black;
   }
 </style>
