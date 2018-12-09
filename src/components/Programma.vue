@@ -93,7 +93,7 @@
           { value: 4, text: 'Donderdag' },
           { value: 5, text: 'Vrijdag' },
           { value: 6, text: 'Zaterdag' },
-          { value: 7, text: 'Zondag' }
+          { value: 0, text: 'Zondag' },
         ],
         fields: [
           {
@@ -134,7 +134,7 @@
             let movieDate = new Date(movie.dag);
             let movieWeek = this.calculateWeek(movieDate);
             let thisWeek = this.calculateWeek(new Date());
-            return (movieWeek == thisWeek) && (this.selected == movieDate.getDay()); //return de films van deze week en koppeling met de dropdown aan de nummers
+            return (movieWeek === thisWeek) && (this.selected === movieDate.getDay()); //return de films van deze week en koppeling met de dropdown aan de nummers
           }
         )
       }
