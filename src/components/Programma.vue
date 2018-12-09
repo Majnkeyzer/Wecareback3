@@ -124,7 +124,7 @@
         this.sliding = false
       },
       calculateWeek(datum) {
-        const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),0,1));
+        const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),3,1));
         return Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
       },
     },
