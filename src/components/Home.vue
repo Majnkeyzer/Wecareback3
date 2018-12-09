@@ -43,9 +43,9 @@
         </p>
       </div>
 
-          <div class="div3">
-            <img src="https://cdn2.kinepolis.com/sites/kinepolis.nl/files/styles/slider_24_7_960/public/theaters/voorkant_cinemagnus_website.jpg?itok=Xi1g0UB5" style=" height: 250px; width: 500px; box-shadow: 10px 10px 5px black;">
-          </div>
+          <!--<div class="div3">-->
+            <!--<img src="https://cdn2.kinepolis.com/sites/kinepolis.nl/files/styles/slider_24_7_960/public/theaters/voorkant_cinemagnus_website.jpg?itok=Xi1g0UB5" style=" height: 250px; width: 500px; box-shadow: 10px 10px 5px black;">-->
+          <!--</div>-->
 
       <div class="div5">
         <p align="center">

@@ -28,6 +28,7 @@ import bCarousel from 'bootstrap-vue/es/components/carousel/carousel';
 import { Carousel } from 'bootstrap-vue/es/components';
 import bTable from 'bootstrap-vue/es/components/table/table';
 import bCarouselSlide from 'bootstrap-vue/es/components/carousel/carousel-slide';
+import { Form } from 'bootstrap-vue/es/components';
 
 
 
@@ -45,6 +46,7 @@ Vue.use(Dropdown);
 Vue.use(BootstrapVue);
 Vue.use(vueResource);
 Vue.use(VueRouter);
+Vue.use(Form);
 
 Vue.config.productionTip = false;
 

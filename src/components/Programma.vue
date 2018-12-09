@@ -97,19 +97,19 @@
         ],
         fields: [
           {
-            key: 'Film.title',
+            key: 'film.titel',
             label: 'Film'
           },
-          // {
-          //   key: 'Datum',
-          //   label: 'Datum'
-          // },
           {
-            key: 'Tijd',
+             key: 'dag',
+             label: 'Datum'
+           },
+           {
+            key: 'tijd',
             label: 'Tijd'
           },
           {
-            key: 'Zaal.zaalNummer',
+            key: 'zalen.zaalnummer',
             label: 'Zaal'
           }
         ],
@@ -125,14 +125,13 @@
       },
       calculateWeek(datum) {
         const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),0,1));
-        const week = Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
-        return week;
+        return Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
       },
     },
     computed: {
       moviesList() {
         return this.films.filter((movie) => {
-            let movieDate = new Date(movie.Datum);
+            let movieDate = new Date(movie.dag);
             let movieWeek = this.calculateWeek(movieDate);
             let thisWeek = this.calculateWeek(new Date());
             return (movieWeek == thisWeek) && (this.selected == movieDate.getDay()); //return de films van deze week en koppeling met de dropdown aan de nummers
@@ -157,7 +156,6 @@
   body {
     background-color: slategray;
   }
-
   .tabel {
     width: 500px;
     height: 50px;
@@ -171,7 +169,6 @@
     margin: 0 auto;
     background-image:  url(../assets/hexagon-background.png);
   }
-
   .dropdown {
     text-align: center;
     font-size: 13px;
