@@ -152,16 +152,16 @@
   }
 </script>
 
-<style >
+<style lang="css" >
   body {
-    background-color: slategray;
+    background: #605B56;
   }
   .tabel {
     width: 500px;
     height: 50px;
     text-align: center;
     font-size: 16px;
-    font-family: Arial, Helvetica;
+    font-family: Arial, Helvetica,serif;
     color: black;
     background-color: lightgray;
     line-height: 1.4em;

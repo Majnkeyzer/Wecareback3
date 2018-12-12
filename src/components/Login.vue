@@ -11,9 +11,11 @@
           <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
       </div>
+
     </template>
 
     <script>
+      import { mapGetters } from 'vuex'
       import axios from 'axios';
       export default {
         name: 'Login',
@@ -24,7 +26,21 @@
             error: false
           }
         },
+        computed: {
+          ...mapGetters({ currentUser: 'currentUser' })
+        },
+        created () {
+          this.checkCurrentLogin()
+        },
+        updated () {
+          this.checkCurrentLogin()
+        },
         methods: {
+          checkCurrentLogin () {
+            if (this.currentUser) {
+              this.$router.replace(this.$route.query.redirect || '/Beheer')
+            }
+          },
           login() {
             axios.put('http://localhost:8080/auth', {user: this.email, password: this.password})
               .then(request => this.loginSuccessful(request))
@@ -37,15 +53,15 @@
               this.loginFailed()
               return
             }
-
-            localStorage.token = req.data.token
             this.error = false
-
+            localStorage.token = req.data.token
+            this.$store.dispatch('login')
             this.$router.replace(this.$route.query.redirect || '/Beheer')
           },
 
           loginFailed() {
             this.error = 'Login failed!'
+            this.$store.dispatch('logout')
             delete localStorage.token
           },
 
@@ -77,7 +93,13 @@
         width: 50%;
         margin: 12% auto;
         background-image:  url(../assets/hexagon-background.png);
+        animation: fadein 0.6s;
       }
+      @keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+
 
       .form-signin {
         max-width: 330px;

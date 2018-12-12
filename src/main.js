@@ -7,10 +7,12 @@ import VueRouter from 'vue-router'
 import 'vue-resize/dist/vue-resize.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import store from './store'
 
 
 
 import Login from './components/Login'
+import Logout from '@/components/Logout'
 import Beheer from './components/Beheer'
 import Programma from './components/Programma'
 import Home from './components/Home'
@@ -58,6 +60,7 @@ const router = new VueRouter({
   routes: [
     {path: '/', component: Home},
     {path: '/Login', component: Login},
+    {path: '/Logout', component: Logout},
     {path: '/Beheer', component: Beheer},
     {path: '/Programma', component: Programma},
     {path: '/Filmbeheer', component: Filmbeheer},
@@ -76,6 +79,7 @@ axios.defaults.headers.get['Accepts'] = 'application/json'
 new Vue({
   router,
   axios,
+  store,
   template: `
   <body style=" min-height: 100%; margin: 0; padding: 0; background-color: slategray;" >
     <div id="app" style="margin-left: 50px; margin-right: 50px; height: 100%; background-color: slategray">
