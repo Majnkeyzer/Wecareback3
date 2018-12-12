@@ -6,7 +6,7 @@
 
 <script>
 import test from './components/Beheer'
-import Users from './components/Users'
+import Users from './components/Login'
 import programma from './components/Programma'
 import Film_toevoegen from './components/Film toevoegen'
 
@@ -14,7 +14,13 @@ export default {
   name: 'App',
   components: {
     test, Users, programma
+  },
+  updated () {
+    if (!localStorage.token && this.$route.path !== '/') {
+      this.$router.push('/?redirect=' + this.$route.path)
+    }
   }
+
 }
 </script>
 

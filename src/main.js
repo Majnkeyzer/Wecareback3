@@ -10,7 +10,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 
-import Users from './components/Users'
+import Login from './components/Login'
 import Beheer from './components/Beheer'
 import Programma from './components/Programma'
 import Home from './components/Home'
@@ -20,6 +20,7 @@ import Zaalbeheer from './components/Zaalbeheer'
 import Kijkwijzerbeheer from './components/Kijkwijzerbeheer'
 import Filminformatie from './components/Filminformatie'
 import axios from 'axios'
+
 
 import VueCarousel from 'vue-carousel';
 import VueResize from 'vue-resize'
@@ -56,7 +57,7 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     {path: '/', component: Home},
-    {path: '/Users', component: Users},
+    {path: '/Login', component: Login},
     {path: '/Beheer', component: Beheer},
     {path: '/Programma', component: Programma},
     {path: '/Filmbeheer', component: Filmbeheer},
@@ -74,6 +75,7 @@ axios.defaults.headers.get['Accepts'] = 'application/json'
 /* eslint-disable no-new */
 new Vue({
   router,
+  axios,
   template: `
   <body style=" min-height: 100%; margin: 0; padding: 0; background-color: slategray;" >
     <div id="app" style="margin-left: 50px; margin-right: 50px; height: 100%; background-color: slategray">
@@ -84,7 +86,7 @@ new Vue({
        <div> 
         <b-button-group>
         <b-button><router-link to="/" style="color:white;">Home</router-link></b-button>
-        <b-button><router-link to="/Users" style="color:white;">Users</router-link></b-button>        
+        <b-button><router-link to="/Login" style="color:white;">Login</router-link></b-button>        
         <b-button><router-link to="/Programma" style="color:white;">Programma</router-link></b-button> 
         <b-button><router-link to="/Beheer" style="color:white;">Beheer</router-link></b-button>
         </b-button-group>
