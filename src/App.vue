@@ -1,20 +1,34 @@
 <template>
  <div id="App">
+   <template v-if="currentUser">
+     <Navbar></Navbar>
+   </template>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import Navbar from '@/components/Navbar'
 import test from './components/Beheer'
-import Users from './components/Users'
+import Users from './components/Login'
 import programma from './components/Programma'
 import Film_toevoegen from './components/Film toevoegen'
 
 export default {
   name: 'App',
+  computed: {
+    ...mapGetters({ currentUser: 'currentUser' })
+  },
   components: {
-    test, Users, programma
+    test, Users, programma, Navbar,
+  },
+  updated () {
+    if (!localStorage.token && this.$route.path !== '/') {
+      this.$router.push('/?redirect=' + this.$route.path)
+    }
   }
+
 }
 </script>
 

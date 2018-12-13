@@ -7,10 +7,13 @@ import VueRouter from 'vue-router'
 import 'vue-resize/dist/vue-resize.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import VueMoment from 'vue-moment'
+import store from './store'
 
+
+
+import Login from './components/Login'
+import Logout from '@/components/Logout'
 import Beheer from './components/Beheer'
-import Reserveren from './components/Reserveren'
 import Programma from './components/Programma'
 import Home from './components/Home'
 import Filmbeheer from './components/Filmbeheer'
@@ -19,6 +22,7 @@ import Zaalbeheer from './components/Zaalbeheer'
 import Kijkwijzerbeheer from './components/Kijkwijzerbeheer'
 import Filminformatie from './components/Filminformatie'
 import axios from 'axios'
+
 
 import VueCarousel from 'vue-carousel';
 import VueResize from 'vue-resize'
@@ -33,7 +37,6 @@ import { Form } from 'bootstrap-vue/es/components';
 
 
 
-Vue.use(require('vue-moment'));
 Vue.component('b-carousel-slide',bCarouselSlide);
 Vue.component('b-carousel', bCarousel);
 Vue.component('b-dropdown', bDropdown);
@@ -56,14 +59,15 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     {path: '/', component: Home},
+    {path: '/Login', component: Login},
+    {path: '/Logout', component: Logout},
     {path: '/Beheer', component: Beheer},
     {path: '/Programma', component: Programma},
     {path: '/Filmbeheer', component: Filmbeheer},
     {path: '/Voorstellingbeheer', component: Voorstellingbeheer},
     {path: '/Zaalbeheer', component: Zaalbeheer},
     {path: '/Kijkwijzerbeheer', component: Kijkwijzerbeheer},
-    {path: '/Filminformatie', component: Filminformatie},
-    {path: '/Reserveren', component: Reserveren}
+    {path: '/Filminformatie', component: Filminformatie}
   ]
 });
 
@@ -74,6 +78,8 @@ axios.defaults.headers.get['Accepts'] = 'application/json'
 /* eslint-disable no-new */
 new Vue({
   router,
+  axios,
+  store,
   template: `
   <body style=" min-height: 100%; margin: 0; padding: 0; background-color: slategray;" >
     <div id="app" style="margin-left: 50px; margin-right: 50px; height: 100%; background-color: slategray">
@@ -83,9 +89,9 @@ new Vue({
         align="right" style="height: 150px; width: 150px; box-shadow: 10px 10px 5px black;" alt="Logo">
        <div> 
         <b-button-group>
-        <b-button><router-link to="/" style="color:white;">Home</router-link></b-button>     
-        <b-button><router-link to="/Programma" style="color:white;">Programma</router-link></b-button>
-        <b-button><router-link to="/Reserveren" style="color:white;">Reserveren</router-link></b-button> 
+        <b-button><router-link to="/" style="color:white;">Home</router-link></b-button>
+        <b-button><router-link to="/Login" style="color:white;">Login</router-link></b-button>        
+        <b-button><router-link to="/Programma" style="color:white;">Programma</router-link></b-button> 
         <b-button><router-link to="/Beheer" style="color:white;">Beheer</router-link></b-button>
         </b-button-group>
         </div>
