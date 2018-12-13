@@ -87,13 +87,13 @@
         sliding: true,
         selected: '',
         options: [
+          { value: 0, text: 'Zondag' },
           { value: 1, text: 'Maandag' },
           { value: 2, text: 'Dinsdag' },
           { value: 3, text: 'Woensdag', },
           { value: 4, text: 'Donderdag' },
           { value: 5, text: 'Vrijdag' },
           { value: 6, text: 'Zaterdag' },
-          { value: 0, text: 'Zondag' },
         ],
         fields: [
           {
