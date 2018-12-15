@@ -16,7 +16,23 @@
 
 
   <b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
+  <!--<table class="table">-->
+    <!--<thead>-->
+    <!--<th>FILM</th>-->
+    <!--<th>DATUM</th>-->
+    <!--<th>TIJD</th>-->
+    <!--<th>ZAAL</th>-->
+    <!--</thead>-->
 
+    <!--<tbody>-->
+    <!--<tr v-for="voorstelling in films">-->
+      <!--<td>{{ voorstelling.film.titel}}</td>-->
+      <!--<td>{{ voorstelling.dag }}</td>-->
+      <!--<td>{{ voorstelling.tijd }}</td>-->
+      <!--<td>{{ voorstelling.zalen.zaalNummer }}</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
 
   <br>
   <h2 align="center">Binnenkort in Retro Cinema</h2>

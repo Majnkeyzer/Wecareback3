@@ -49,7 +49,7 @@
 
         <tbody>
         <tr v-for="kijkwijzer in kijkwijzers">
-          <td>{{ kijkwijzer.kwid }}</td>
+          <td>{{ kijkwijzer.id }}</td>
           <td>{{ kijkwijzer.tekst }}</td>
           <td>{{ kijkwijzer.symbool }}</td>
           <td>
@@ -75,7 +75,7 @@
     data() {
       return {
         newKijkwijzer: {
-          kwid: '',
+          id: '',
           tekst: '',
           symbool: ''
         },
@@ -96,21 +96,21 @@
       }
       ,
 
-      RemoveKijkwijzer(kwid) {
+      RemoveKijkwijzer(id) {
         var ConfirmBox = confirm("Weet u zeker dat u deze Kijkwijzer wilt verwijderen?")
 
-        if (ConfirmBox) axios.delete('http://localhost:8080/kijkwijzer/delete/'+ kwid)
+        if (ConfirmBox) axios.delete('http://localhost:8080/kijkwijzer/delete/'+ id)
 
         this.fetchKijkwijzer()
       }
       ,
 
-      EditKijkwijzer(kwid) {
+      EditKijkwijzer(id) {
         var kijkwijzer = this.newKijkwijzer
 
-        this.newKijkwijzer = {kwid: '', tekst: '', symbool: ''}
+        this.newKijkwijzer = {id: '', tekst: '', symbool: ''}
 
-        axios.put('http://localhost:8080/kijkwijzer/update/' + kwid, kijkwijzer, function (data) {
+        axios.put('http://localhost:8080/kijkwijzer/update/' + id, kijkwijzer, function (data) {
           console.log(data)
         })
 
@@ -121,12 +121,12 @@
       }
       ,
 
-      ShowKijkwijzer(kwid) {
+      ShowKijkwijzer(id) {
         this.edit = true
 
-        axios.get('http://localhost:8080/kijkwijzer/getById/'+ kwid)
+        axios.get('http://localhost:8080/kijkwijzer/getById/'+ id)
           .then(response => {
-            this.newKijkwijzer.kwid = response.data.kwid
+            this.newKijkwijzer.id = response.data.id
             this.newKijkwijzer.tekst = response.data.tekst
             this.newKijkwijzer.symbool = response.data.symbool
           });

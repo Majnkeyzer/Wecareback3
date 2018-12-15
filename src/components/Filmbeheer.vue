@@ -71,9 +71,9 @@
         </div>
 
         <div class="form-group">
-          <label for="kijkwijzer">Kijkwijzer:</label>
-          <select v-model="newFilm.kijkwijzer" id="kijkwijzer" name="kijkwijzer" class="form-control" multiple>
-            <option v-for="kijkwijzer in kijkwijzers">{{kijkwijzer.tekst}}</option>
+          <label for="kijkwijzers">Kijkwijzer:</label>
+          <select v-model="newFilm.kijkwijzers" id="kijkwijzers" name="kijkwijzers" class="form-control" multiple="true">
+            <option v-for="kijkwijzer in kijkwijzersget" v-bind:value="kijkwijzer.id">{{kijkwijzer.tekst}}</option>
           </select>
 
         </div>
@@ -109,17 +109,19 @@
         <th>EXTRALANG</th>
         <th>DATUMBESCHIKBAAR</th>
         <th>AFLOOPDATUM</th>
+        <th>KIJKWIJZER</th>
         </thead>
 
         <tbody>
         <tr v-for="film in films">
-          <td>{{ film.id }}</td>
+          <router-link v-bind:to="'/Filminformatie/'+ film.id"><td>{{film.id}}</td></router-link>
           <td>{{ film.titel }}</td>
           <td>{{ film.imax }}</td>
           <td>{{ film.ddd }}</td>
           <td>{{ film.extralang }}</td>
           <td>{{ film.datumBeschikbaar }}</td>
           <td>{{ film.afloopDatum }}</td>
+          <td>{{ film.kijkwijzers }}</td>
           <td>
             <button class="btn btn-default btn-sm" @click="ShowFilm(film.id)">Aanpassen</button>
             <button class="btn btn-danger btn-sm" @click="RemoveFilm(film.id)">Verwijderen</button>
@@ -143,7 +145,7 @@
     data() {
       return {
         msg:'Filmbeheer',
-        kijkwijzers: [],
+        kijkwijzersget: [],
         newFilm: {
           id: '',
           titel: '',
@@ -152,7 +154,7 @@
           imax: '',
           ddd: '',
           extralang: '',
-          kijkwijzer: [],
+          kijkwijzers: [],
           datumBeschikbaar: '',
           afloopDatum: '',
         },
@@ -166,6 +168,7 @@
         axios.get('http://localhost:8080/film/getAll')
           .then(response => {
             this.films = response.data;
+            console.log(response)
           });
       }
       ,
@@ -173,7 +176,7 @@
       fetchKijkwijzer() {
         axios.get('http://localhost:8080/kijkwijzer/getAll')
           .then(response => {
-            this.kijkwijzers = response.data;
+            this.kijkwijzersget = response.data;
           });
       }
       ,

@@ -71,10 +71,10 @@
         <tbody>
         <tr v-for="voorstelling in voorstellingen">
           <td>{{ voorstelling.id }}</td>
-          <td>{{ voorstelling.film }}</td>
+          <td>{{ voorstelling.film.titel }}</td>
           <td>{{ voorstelling.dag }}</td>
           <td>{{ voorstelling.tijd }}</td>
-          <td>{{ voorstelling.zalen }}</td>
+          <td>{{ voorstelling.zalen.zaalNummer }}</td>
           <td>
             <button class="btn btn-default btn-sm" @click="ShowVoorstelling(voorstelling.id)">Aanpassen</button>
             <button class="btn btn-danger btn-sm" @click="RemoveVoorstelling(voorstelling.id)">Verwijderen</button>
