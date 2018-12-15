@@ -103,13 +103,13 @@
         sliding: true,
         selected: '',
         options: [
+          { value: 0, text: 'Zondag' },
           { value: 1, text: 'Maandag' },
           { value: 2, text: 'Dinsdag' },
           { value: 3, text: 'Woensdag', },
           { value: 4, text: 'Donderdag' },
           { value: 5, text: 'Vrijdag' },
           { value: 6, text: 'Zaterdag' },
-          { value: 7, text: 'Zondag' }
         ],
         fields: [
           {
@@ -140,7 +140,7 @@
         this.sliding = false
       },
       calculateWeek(datum) {
-        const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),0,1));
+        const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),3,1));
         return Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
       },
     },
@@ -150,7 +150,7 @@
             let movieDate = new Date(movie.dag);
             let movieWeek = this.calculateWeek(movieDate);
             let thisWeek = this.calculateWeek(new Date());
-            return (movieWeek == thisWeek) && (this.selected == movieDate.getDay()); //return de films van deze week en koppeling met de dropdown aan de nummers
+            return (movieWeek === thisWeek) && (this.selected === movieDate.getDay()); //return de films van deze week en koppeling met de dropdown aan de nummers
           }
         )
       }
@@ -168,16 +168,16 @@
   }
 </script>
 
-<style >
+<style lang="css" >
   body {
-    background-color: slategray;
+    background: #605B56;
   }
   .tabel {
     width: 500px;
     height: 50px;
     text-align: center;
     font-size: 16px;
-    font-family: Arial, Helvetica;
+    font-family: Arial, Helvetica,serif;
     color: black;
     background-color: lightgray;
     line-height: 1.4em;
