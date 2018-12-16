@@ -16,6 +16,12 @@
 
 
   <b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
+
+  <!--<div class="Programma2">-->
+    <!--<ul>-->
+      <!--<li v-for="(object, id) in gekozenfilms">{{film.titel}}-{{dag}}-{{tijd}}-{{zalen.zaalNummer}}<b-button><router-link to="/newReservering" style="color:white;">Reserveren</router-link></b-button></li>-->
+    <!--</ul>-->
+  <!--</div>-->
   <!--<table class="table">-->
     <!--<thead>-->
     <!--<th>FILM</th>-->
@@ -125,11 +131,14 @@
             label: 'Tijd'
           },
           {
-            key: 'zalen.id',
+            key: 'zalen.zaalNummer',
             label: 'Zaal'
           }
         ],
-        films: []
+        films: [],
+        vid:'',
+        zid:'',
+        fid:''
       };
     },
     methods: {
@@ -155,6 +164,7 @@
         )
       }
     },
+
     created() {
       this.selected = new Date().getDay(); //default dag is vandaag, haal alle films en attributen op.
       axios.get(`http://localhost:8080/voorstelling/getAll`)

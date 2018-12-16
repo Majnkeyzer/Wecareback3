@@ -1,16 +1,27 @@
 <template>
 
-  <div class="form-group">
-    <label for="aantalKaartjes">Aantal Kaartjes:</label>
-    <select v-model="selected">
-      <option v-for="n in 20" :value="n">{{ newReservering.aantalKaartjes }}</option>
-    </select>
-  </div>
+  <div class="container">
+    <br>
 
-  <div class="form-group">
+    <b-button><router-link to="/Programma" style="color:white;">Terug</router-link></b-button>
+    <br> <br>
+
+    <img src="Film.poster">
+    <br> <br>
+
+    <label> U Reserveert: {{ Film.titel }} om: {{ Voorstelling.tijd }} op: {{ Voorstelling.dag }} in zaal: {{ Zaal.zaalNummer }}</label>
+    <br> <br>
+
+    <div class="form-group">
+      <label >Aantal Kaartjes:</label>
+      <select v-model="selected">
+        <option v-for="n in 20" :value="n" v-bind="aantalKaartjes">{{ n }}</option></select>
+    </div>
+
+    <div class="form-group">
     <label for="emailAdres">Voer uw Emailadres in:</label>
     <input v-model="newReservering.emailAdres" type="text" id="emailAdres" name="emailAdres" class="form-control">
-  </div>
+    </div>
 
   <!--<div class="form-group">-->
     <!--<label>Kies uw Stoelen</label>-->
@@ -18,17 +29,20 @@
 
   <!--</div>-->
 
-  <div class="form-group">
-    <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg Reservering toe</button>
+    <div class="form-group">
+      <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg Reservering toe</button>
 
-    <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newReservering.id)">Pas Reservering aan</button>
+      <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newReservering.id)">Pas Reservering aan</button>
+    </div>
   </div>
+
 </template>
 
 <script>
   import axios from 'axios';
   export default {
     name: "newReservering",
+    props:['zid', 'fid', 'vid'],
     data() {
       return {
         newReservering: {
@@ -48,21 +62,21 @@
     },
     methods: {
       haalFilm() {
-        axios.get('http://localhost:8080/film/getById'+ fid)
+        axios.get('http://localhost:8080/film/getById'+ '${this.fid}')
           .then(response => {
             this.Film = response.data;
             console.log(response)
           });
       },
       haalVoorstelling() {
-        axios.get('http://localhost:8080/voorstelling/getById'+ vid)
+        axios.get('http://localhost:8080/voorstelling/getById'+ '${this.vid}')
           .then(response => {
             this.Voorstelling = response.data;
             console.log(response)
           });
       },
       haalZaal() {
-        axios.get('http://localhost:8080/Zaal/getById'+zid)
+        axios.get('http://localhost:8080/Zaal/getById'+'${this.zid}')
           .then(response => {
             this.Zaal = response.data;
             console.log(response)
