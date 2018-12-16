@@ -125,7 +125,7 @@
             label: 'Tijd'
           },
           {
-            key: 'zalen.zaalnummer',
+            key: 'zalen.id',
             label: 'Zaal'
           }
         ],
