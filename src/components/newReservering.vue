@@ -6,7 +6,7 @@
     <b-button><router-link to="/Programma" style="color:white;">Terug</router-link></b-button>
     <br> <br>
 
-    <img src="Film.poster">
+    <img :src= Film.poster>
     <br> <br>
 
     <label> U Reserveert: {{ Film.titel }} om: {{ Voorstelling.tijd }} op: {{ Voorstelling.dag }} in zaal: {{ Zaal.zaalNummer }}</label>
@@ -60,28 +60,31 @@
         gekozenStoelen: [],
       }
     },
-    methods: {
+    created: {
       haalFilm() {
-        axios.get('http://localhost:8080/film/getById'+ '${this.fid}')
+        axios.get('http://localhost:8080/film/getById' + '${this.fid}')
           .then(response => {
             this.Film = response.data;
             console.log(response)
           });
       },
       haalVoorstelling() {
-        axios.get('http://localhost:8080/voorstelling/getById'+ '${this.vid}')
+        axios.get('http://localhost:8080/voorstelling/getById' + '${this.vid}')
           .then(response => {
             this.Voorstelling = response.data;
             console.log(response)
           });
       },
       haalZaal() {
-        axios.get('http://localhost:8080/Zaal/getById'+'${this.zid}')
+        axios.get('http://localhost:8080/Zaal/getById' + '${this.zid}')
           .then(response => {
             this.Zaal = response.data;
             console.log(response)
           });
       },
+    },
+      methods:{
+
       AddNewReservering(){
         axios.post('http://localhost:8080/reservering/save', this.newReservering)
           .then(response => {

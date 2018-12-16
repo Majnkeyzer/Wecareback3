@@ -15,30 +15,28 @@
   <!--<div>Selected: <strong>{{ options }} </strong></div>-->
 
 
-  <b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
+  <!--<b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>-->
 
-  <!--<div class="Programma2">-->
-    <!--<ul>-->
-      <!--<li v-for="(object, id) in gekozenfilms">{{film.titel}}-{{dag}}-{{tijd}}-{{zalen.zaalNummer}}<b-button><router-link to="/newReservering" style="color:white;">Reserveren</router-link></b-button></li>-->
-    <!--</ul>-->
-  <!--</div>-->
-  <!--<table class="table">-->
-    <!--<thead>-->
-    <!--<th>FILM</th>-->
-    <!--<th>DATUM</th>-->
-    <!--<th>TIJD</th>-->
-    <!--<th>ZAAL</th>-->
-    <!--</thead>-->
+  <table class="table">
+    <thead>
+    <th>FILM</th>
+    <th>DATUM</th>
+    <th>TIJD</th>
+    <th>ZAAL</th>
+    <th>RESERVEER</th>
+    </thead>
 
-    <!--<tbody>-->
-    <!--<tr v-for="voorstelling in films">-->
-      <!--<td>{{ voorstelling.film.titel}}</td>-->
-      <!--<td>{{ voorstelling.dag }}</td>-->
-      <!--<td>{{ voorstelling.tijd }}</td>-->
-      <!--<td>{{ voorstelling.zalen.zaalNummer }}</td>-->
-    <!--</tr>-->
-    <!--</tbody>-->
-  <!--</table>-->
+    <tbody>
+    <tr v-for="voorstelling in moviesList" >
+      <td>{{ voorstelling.film.titel}}</td>
+      <td>{{ voorstelling.dag }}</td>
+      <td>{{ voorstelling.tijd }}</td>
+      <td>{{ voorstelling.zalen.zaalNummer }}</td>
+      <td><b-button v-on:click="hop"><router-link to="/newReservering" style="color:white;">Reserveren</router-link></b-button></td>
+    </tr>
+
+    </tbody>
+  </table>
 
   <br>
   <h2 align="center">Binnenkort in Retro Cinema</h2>
@@ -142,6 +140,13 @@
       };
     },
     methods: {
+
+      hop: function(event){
+        this.vid===voorstelling.id
+        this.zid === voorstelling.zalen.id
+        this.fid === voorstelling.film.id
+      },
+
       onSlideStart(slide) {
         this.sliding = true
       },
