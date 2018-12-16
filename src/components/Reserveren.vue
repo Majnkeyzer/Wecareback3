@@ -1,87 +1,66 @@
 <template>
-
-  <body>
-
-  <br>
-  <br>
-
-  <div class="Reserveren">
-    <h5 align="left">Tijden en Tickets &nbsp; {{selected}}</h5>
-    <b-form>
-      <div>
-        <b-button-group>
-          <b-button v-bind:value="moment.getDay()">Vandaag</b-button>
-          <b-button v-bind:value="morgen">Morgen</b-button>
-          <b-button>{{dag3}}</b-button>
-          <b-button>{{dag4}}</b-button>
-          <b-button>{{dag5}}</b-button>
-          <b-button>{{dag6}}</b-button>
-          <b-button>{{dag7}}</b-button>
-        </b-button-group>
-      </div>
-
-    </b-form>
-  </div>
-
-  </body>
-    
+  <select v-model="selected">
+    <option disabled value="">Please select one</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+  </select>
 </template>
 
 <script>
-  import axios from 'axios';
-  var moment = require('moment');
     export default {
-
-      mounted() {
-        this.getVoorstellingen()
-        this.getFilms()
-        this.vandaag = Date.getDay();
-        this.morgen = Date(today.getDate() + 1);
-        this.dag3 = Date(today.getDate()+ (2));
-        this.dag4 = Date(today.getDate()+ (3));
-        this.dag5 = Date(today.getTime()+ (4));
-        this.dag6 = Date(today.getTime()+ (5));
-        this.dag7 = Date(today.getTime()+ (6));
-      },
-        name: "Reserveren",
-
-      data:{
-
-        moment:moment,
-        selected: '',
-        vandaag: '',
-        morgen: '',
-        voorstellingen: [],
-        films: [],
-
-      },
-      methods: {
-        getVoorstellingen() {
-          axios.get('http://localhost:8080/voorstelling/getAll')
-            .then(function (response) {
-              this.Voorstellingen = response.data;
-            });
-        },
-        getFilms() {
-          axios.get('http://localhost:8080/voorstelling/getAll')
-            .then(function (response) {
-              this.Voorstellingen = response.data;
-            });
-        },
-
-      },
-      computed: {
-
-      }
-
-
-
+        name: "Reserveren"
     }
 </script>
 
 <style scoped>
-  body {
-    background-color: slategray;
+  .img1{
+    position: relative;
+    top: 100px;
+    right: 100px;
+    height: 450px;
+    width: 350px;
+    box-shadow: 10px 10px 5px black;
   }
 
+  .title{
+    position: relative;
+    bottom: 360px;
+    margin-left: 350px;
+    font-size: 45px;
+    font-weight: 600;
+    text-shadow:2px 2px 5px darkgrey;
+  }
+
+  .subtitle{
+    position: relative;
+    bottom: 340px;
+    margin-left: 350px;
+  }
+
+  .description{
+    position: relative;
+    bottom: 260px;
+    margin-left: 350px;
+  }
+
+  .icon1{
+    height: 40px;
+    width: 40px;
+  }
+  .icon2{
+    height: 40px;
+    width: 40px;
+  }
+  .icon3{
+    height: 40px;
+    width: 40px;
+  }
 </style>

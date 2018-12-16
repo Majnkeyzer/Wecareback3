@@ -16,6 +16,7 @@ import Logout from '@/components/Logout'
 import Beheer from './components/Beheer'
 import Programma from './components/Programma'
 import Home from './components/Home'
+import Reserveren from '/components/Reserveren'
 import Filmbeheer from './components/Filmbeheer'
 import Voorstellingbeheer from './components/Voorstellingbeheer'
 import Zaalbeheer from './components/Zaalbeheer'
@@ -62,6 +63,7 @@ const router = new VueRouter({
     {path: '/Login', component: Login},
     {path: '/Logout', component: Logout},
     {path: '/Beheer', component: Beheer},
+    {path: '/Reserveren', component: Reserveren},
     {path: '/Programma', component: Programma},
     {path: '/Filmbeheer', component: Filmbeheer},
     {path: '/Voorstellingbeheer', component: Voorstellingbeheer},

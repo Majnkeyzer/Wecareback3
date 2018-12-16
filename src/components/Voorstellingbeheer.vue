@@ -19,8 +19,8 @@
 
       <form @submit.prevent="AddNewVoorstelling">
         <!--<div class="form-group">-->
-          <!--<label for="id">ID:</label>-->
-          <!--<input v-model="newVoorstelling.id" type="text" id="id" name="id" class="form-control">-->
+        <!--<label for="id">ID:</label>-->
+        <!--<input v-model="newVoorstelling.id" type="text" id="id" name="id" class="form-control">-->
         <!--</div>-->
 
         <div class="form-group">
@@ -89,140 +89,140 @@
 
 <script>
   import axios from 'axios';
-    export default {
-      mounted() {
-        this.fetchVoorstelling()
-        this.fetchFilm()
-        this.fetchZalen()
-      },
-      name: "Voorstellingbeheer",
+  export default {
+    mounted() {
+      this.fetchVoorstelling()
+      this.fetchFilm()
+      this.fetchZalen()
+    },
+    name: "Voorstellingbeheer",
 
-      data() {
-        return {
-          newVoorstelling: {
-            id: '',
-            film: '',
-            dag: '',
-            tijd: '',
-            zalen: '',
-          },
-          voorstellingen: [],
-          zalenvoor: [],
-          filmsvoor: [],
+    data() {
+      return {
+        newVoorstelling: {
+          id: '',
+          film: '',
+          dag: '',
+          tijd: '',
+          zalen: '',
+        },
+        voorstellingen: [],
+        zalenvoor: [],
+        filmsvoor: [],
 
-          success: false,
+        success: false,
 
-          edit: false
-        }
-      },
-          methods: {
-            fetchZalen() {
-              axios.get('http://localhost:8080/Zaal/getAll')
-                .then(response => {
-                  this.zalenvoor = response.data;
-                });
-            }
-            ,
-
-            fetchFilm() {
-              axios.get('http://localhost:8080/film/getAll')
-                .then(response => {
-                  this.filmsvoor = response.data;
-                });
-            }
-            ,
-
-            fetchVoorstelling() {
-              axios.get('http://localhost:8080/voorstelling/getAll')
-                .then(response => {
-                  this.voorstellingen = response.data;
-                });
-            }
-        ,
-
-          RemoveVoorstelling(id) {
-            var ConfirmBox = confirm("Weet u zeker dat u deze Voorstelling wilt verwijderen?")
-
-            if (ConfirmBox) axios.delete('http://localhost:8080/voorstelling/delete/'+ id)
-
-            this.fetchVoorstelling()
-          }
-        ,
-
-          EditVoorstelling(id) {
-            var voorstelling = this.newVoorstelling
-
-            this.newVoorstelling = {id: '', film: '', dag: '', tijd: '', zalen: ''}
-
-            axios.put('http://localhost:8080/voorstelling/update/' + id, voorstelling, function (data) {
-              console.log(data)
-            })
-
-            this.fetchVoorstelling()
-
-            this.edit = false
-
-          }
-        ,
-
-          ShowVoorstelling(id) {
-            this.edit = true
-
-            axios.get('http://localhost:8080/voorstelling/getById/' + id)
-              .then(response => {
-              this.newVoorstelling.id = response.data.id
-              this.newVoorstelling.films = response.data.film
-              this.newVoorstelling.dag = response.data.dag
-              this.newVoorstelling.tijd = response. data.tijd
-              this.newVoorstelling.zalen = response.data.zalen
-            });
-          }
-        ,
-
-          AddNewVoorstelling() {
-
-            axios.post('http://localhost:8080/voorstelling/save', this.newVoorstelling)
-                    .then(response => {
-
-                      console.log(response);
-                    }, error => {
-                      console.log(error);
-                    });
-
-
-            self = this
-            this.success = true
-            setTimeout(function () {
-              self.success = false
-            }, 5000)
-
-            this.newVoorstelling = {film: '', dag: '', tijd: '', zaal: ''}
-            this.fetchVoorstelling()
-
-          }
-
-        }
+        edit: false
+      }
+    },
+    methods: {
+      fetchZalen() {
+        axios.get('http://localhost:8080/Zaal/getAll')
+          .then(response => {
+            this.zalenvoor = response.data;
+          });
+      }
       ,
 
-        computed: {
-          validation(){
-            return {
-              // film: !!this.newVoorstelling.film.trim(),
-              dag: !!this.newVoorstelling.dag.trim(),
-              tijd: !!this.newVoorstelling.tijd.trim(),
-              // zalen: !!this.newVoorstelling.zalen.trim()
-            }
-          }
-        ,
+      fetchFilm() {
+        axios.get('http://localhost:8080/film/getAll')
+          .then(response => {
+            this.filmsvoor = response.data;
+          });
+      }
+      ,
 
-          isValid() {
-            var validation = this.validation
-            return Object.keys(validation).every(function (key) {
-              return validation[key]
-            })
-          }
+      fetchVoorstelling() {
+        axios.get('http://localhost:8080/voorstelling/getAll')
+          .then(response => {
+            this.voorstellingen = response.data;
+          });
+      }
+      ,
+
+      RemoveVoorstelling(id) {
+        var ConfirmBox = confirm("Weet u zeker dat u deze Voorstelling wilt verwijderen?")
+
+        if (ConfirmBox) axios.delete('http://localhost:8080/voorstelling/delete/'+ id)
+
+        this.fetchVoorstelling()
+      }
+      ,
+
+      EditVoorstelling(id) {
+        var voorstelling = this.newVoorstelling
+
+        this.newVoorstelling = {id: '', film: '', dag: '', tijd: '', zalen: ''}
+
+        axios.put('http://localhost:8080/voorstelling/update/' + id, voorstelling, function (data) {
+          console.log(data)
+        })
+
+        this.fetchVoorstelling()
+
+        this.edit = false
+
+      }
+      ,
+
+      ShowVoorstelling(id) {
+        this.edit = true
+
+        axios.get('http://localhost:8080/voorstelling/getById/' + id)
+          .then(response => {
+            this.newVoorstelling.id = response.data.id
+            this.newVoorstelling.films = response.data.film
+            this.newVoorstelling.dag = response.data.dag
+            this.newVoorstelling.tijd = response. data.tijd
+            this.newVoorstelling.zalen = response.data.zalen
+          });
+      }
+      ,
+
+      AddNewVoorstelling() {
+
+        axios.post('http://localhost:8080/voorstelling/save', this.newVoorstelling)
+          .then(response => {
+
+            console.log(response);
+          }, error => {
+            console.log(error);
+          });
+
+
+        self = this
+        this.success = true
+        setTimeout(function () {
+          self.success = false
+        }, 5000)
+
+        this.newVoorstelling = {film: '', dag: '', tijd: '', zaal: ''}
+        this.fetchVoorstelling()
+
+      }
+
+    }
+    ,
+
+    computed: {
+      validation(){
+        return {
+          // film: !!this.newVoorstelling.film.trim(),
+          dag: !!this.newVoorstelling.dag.trim(),
+          tijd: !!this.newVoorstelling.tijd.trim(),
+          // zalen: !!this.newVoorstelling.zalen.trim()
         }
       }
+      ,
+
+      isValid() {
+        var validation = this.validation
+        return Object.keys(validation).every(function (key) {
+          return validation[key]
+        })
+      }
+    }
+  }
 
 </script>
 
