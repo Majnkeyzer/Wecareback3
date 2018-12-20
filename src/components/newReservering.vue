@@ -1,6 +1,8 @@
 <template>
 
   <div class="container">
+    <div class="column is-three-quarters" v-for="(reservering, index) in Voorstelling " :key="index">
+      <div v-if="vid == reservering.id">
     <br>
 
     <b-button><router-link to="/Programma" style="color:white;">Terug</router-link></b-button>
@@ -9,7 +11,7 @@
     <!--<img :src=Voorstelling.film.poster>-->
     <br> <br>
 
-    <label> U Reserveert: {{ Voorstelling.film.titel }} om: {{ Voorstelling.tijd }} op: {{ Voorstelling.dag }} in zaal: {{ Voorstelling.zalen.zaalNummer }}</label>
+    <label> U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd }} op: {{ reservering.dag }} in zaal: {{ reservering.zalen.zaalNummer }}</label>
     <br> <br>
 
     <form @submit.prevent="AddNewReservering">
@@ -39,7 +41,8 @@
     </div>
 
     </form>
-
+      </div>
+    </div>
   </div>
 
 </template>
@@ -47,14 +50,18 @@
 <script>
   import axios from 'axios';
   export default {
-    watch: {
-      '$route' (to, from) {
-        alert(to.params.vid);
-      }
+    mounted() {
+      this.haalVoorstelling()
     },
+    // watch: {
+    //   '$route' (to, from) {
+    //     alert(to.params.vid);
+    //   }
+    // },
     name: "newReservering",
     data() {
       return {
+        vid: this.$route.params.id,
         newReservering: {
           voorstellingid: '',
           emailAdres: '',
@@ -64,20 +71,19 @@
         Reserveringen:[
 
         ],
-        Voorstelling:'',
+        Voorstelling:[],
         gekozenStoelen: [],
       }
     },
-    created: {
+    methods: {
       haalVoorstelling() {
-        axios.get('http://localhost:8080/voorstelling/getById' + this.$route.params.vid)
+        axios.get('http://localhost:8080/voorstelling/getAll')
           .then(response => {
             this.Voorstelling = response.data;
             console.log(response)
           });
       },
     },
-      methods:{
 
       AddNewReservering(){
         axios.post('http://localhost:8080/reservering/save', this.newReservering)
@@ -100,7 +106,6 @@
             return validation[key]
           })
         }
-    }
   }
 </script>
 

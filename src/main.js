@@ -69,7 +69,7 @@ const router = new VueRouter({
     {path: '/Zaalbeheer', component: Zaalbeheer},
     {path: '/Kijkwijzerbeheer', component: Kijkwijzerbeheer},
     {path: '/Filminformatie/:id', name:'Filminformatie', component: Filminformatie },
-    {path: '/newReservering', component: newReservering},
+    {path: '/newReservering/:id', name:'newReservering',  component: newReservering},
   ]
 });
 
