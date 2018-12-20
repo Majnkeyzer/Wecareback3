@@ -6,16 +6,19 @@
     <b-button><router-link to="/Programma" style="color:white;">Terug</router-link></b-button>
     <br> <br>
 
-    <img :src= Film.poster>
+    <!--<img :src=Voorstelling.film.poster>-->
     <br> <br>
 
-    <label> U Reserveert: {{ Film.titel }} om: {{ Voorstelling.tijd }} op: {{ Voorstelling.dag }} in zaal: {{ Zaal.zaalNummer }}</label>
+    <label> U Reserveert: {{ Voorstelling.film.titel }} om: {{ Voorstelling.tijd }} op: {{ Voorstelling.dag }} in zaal: {{ Voorstelling.zalen.zaalNummer }}</label>
     <br> <br>
+
+    <form @submit.prevent="AddNewReservering">
 
     <div class="form-group">
       <label >Aantal Kaartjes:</label>
       <select v-model="selected">
-        <option v-for="n in 20" :value="n" v-bind="aantalKaartjes">{{ n }}</option></select>
+        <option v-for="n in 15" :value="n" v-bind="aantalKaartjes">{{ n }}</option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -30,10 +33,13 @@
   <!--</div>-->
 
     <div class="form-group">
-      <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg Reservering toe</button>
+      <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit" @click="AddNewReservering">Voeg Reservering toe</button>
 
       <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newReservering.id)">Pas Reservering aan</button>
     </div>
+
+    </form>
+
   </div>
 
 </template>
@@ -41,8 +47,12 @@
 <script>
   import axios from 'axios';
   export default {
+    watch: {
+      '$route' (to, from) {
+        alert(to.params.vid);
+      }
+    },
     name: "newReservering",
-    props:['zid', 'fid', 'vid'],
     data() {
       return {
         newReservering: {
@@ -54,31 +64,15 @@
         Reserveringen:[
 
         ],
-        Film:'',
         Voorstelling:'',
-        Zaal:'',
         gekozenStoelen: [],
       }
     },
     created: {
-      haalFilm() {
-        axios.get('http://localhost:8080/film/getById' + '${this.fid}')
-          .then(response => {
-            this.Film = response.data;
-            console.log(response)
-          });
-      },
       haalVoorstelling() {
-        axios.get('http://localhost:8080/voorstelling/getById' + '${this.vid}')
+        axios.get('http://localhost:8080/voorstelling/getById' + this.$route.params.vid)
           .then(response => {
             this.Voorstelling = response.data;
-            console.log(response)
-          });
-      },
-      haalZaal() {
-        axios.get('http://localhost:8080/Zaal/getById' + '${this.zid}')
-          .then(response => {
-            this.Zaal = response.data;
             console.log(response)
           });
       },
@@ -99,7 +93,13 @@
         }, 5000)
         this.newReservering = {reserveringid: '', voorstelling:'', emailAdres:'', aantalKaartjes:''}
         this.fetchFilm()
-      }
+      },
+        isValid() {
+          var validation = this.validation
+          return Object.keys(validation).every(function (key) {
+            return validation[key]
+          })
+        }
     }
   }
 </script>

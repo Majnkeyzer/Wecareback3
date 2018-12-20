@@ -23,7 +23,7 @@
     <th>DATUM</th>
     <th>TIJD</th>
     <th>ZAAL</th>
-    <th>RESERVEER</th>
+    <th></th>
     </thead>
 
     <tbody>
@@ -32,7 +32,7 @@
       <td>{{ voorstelling.dag }}</td>
       <td>{{ voorstelling.tijd }}</td>
       <td>{{ voorstelling.zalen.zaalNummer }}</td>
-      <td><b-button v-on:click="hop"><router-link to="/newReservering" style="color:white;">Reserveren</router-link></b-button></td>
+      <td><b-button><router-link v-bind:to="'/newReservering/'+voorstelling.id" style="color:white;">Reserveren</router-link></b-button></td>
     </tr>
 
     </tbody>
@@ -99,6 +99,7 @@
 
 <script>
   import axios from 'axios';
+
   export default {
     name: "films",
     data() {
@@ -140,12 +141,6 @@
       };
     },
     methods: {
-
-      hop: function(event){
-        this.vid===voorstelling.id
-        this.zid === voorstelling.zalen.id
-        this.fid === voorstelling.film.id
-      },
 
       onSlideStart(slide) {
         this.sliding = true
