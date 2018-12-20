@@ -38,8 +38,8 @@
       <td>{{ voorstelling.tijd }}</td>
       <td>{{ voorstelling.zalen.zaalNummer }}</td>
       <!--<td><button><router-link :to="'/Filminformatie/' + voorstelling.film.id">Meer informatie</router-link></button></td>-->
-      <td><button class="btn btn-danger btn-sm" @click="Meerinfo(voorstelling.film.id)">Meer informatie</button>
-        <button class="btn btn-danger btn-sm" @click="Reservering(voorstelling.id)">Reserveren</button>
+      <td><b-button  @click="Meerinfo(voorstelling.film.id)">Meer informatie</b-button>
+        <b-button @click="Reservering(voorstelling.id)">Reserveren</b-button>
       </td>
     </tr>
     </tbody>

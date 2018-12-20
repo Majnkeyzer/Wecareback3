@@ -8,7 +8,8 @@
     <b-button><router-link to="/Programma" style="color:white;">Terug</router-link></b-button>
     <br> <br>
 
-    <!--<img :src=Voorstelling.film.poster>-->
+    <img :src=reservering.film.poster>
+
     <br> <br>
 
     <label> U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd }} op: {{ reservering.dag }} in zaal: {{ reservering.zalen.zaalNummer }}</label>
@@ -19,7 +20,7 @@
     <div class="form-group">
       <label >Aantal Kaartjes:</label>
       <select v-model="selected">
-        <option v-for="n in 15" :value="n" v-bind="aantalKaartjes">{{ n }}</option>
+        <option v-for="n in 15" :value="n" v-bind="newReservering.aantalKaartjes">{{ n }}</option>
       </select>
     </div>
 
@@ -35,7 +36,7 @@
   <!--</div>-->
 
     <div class="form-group">
-      <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit" @click="AddNewReservering">Voeg Reservering toe</button>
+      <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit" @click="AddNewReservering(this.newReservering)">Voeg Reservering toe</button>
 
       <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newReservering.id)">Pas Reservering aan</button>
     </div>
@@ -53,14 +54,11 @@
     mounted() {
       this.haalVoorstelling()
     },
-    // watch: {
-    //   '$route' (to, from) {
-    //     alert(to.params.vid);
-    //   }
-    // },
     name: "newReservering",
     data() {
       return {
+        edit: false,
+        selected: '',
         vid: this.$route.params.id,
         newReservering: {
           voorstellingid: '',
@@ -100,6 +98,13 @@
         this.newReservering = {reserveringid: '', voorstelling:'', emailAdres:'', aantalKaartjes:''}
         this.fetchFilm()
       },
+    validation() {
+      return {
+        titel: !!this.newFilm.titel.trim(),
+        datumBeschikbaar: !!this.newFilm.datumBeschikbaar.trim(),
+        afloopDatum: !!this.newFilm.afloopDatum.trim(),
+      }
+    },
         isValid() {
           var validation = this.validation
           return Object.keys(validation).every(function (key) {
