@@ -2,7 +2,7 @@
 
   <div class="container">
     <div class="column is-three-quarters" v-for="(reservering, index) in Voorstelling " :key="index">
-      <div v-if="vid == reservering.id">
+      <div  v-if="vid == reservering.id">
     <br>
 
     <b-button><router-link to="/Programma" style="color:white;">Terug</router-link></b-button>
@@ -12,21 +12,23 @@
 
     <br> <br>
 
-    <label> U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd }} op: {{ reservering.dag }} in zaal: {{ reservering.zalen.zaalNummer }}</label>
+        <form @submit.prevent="AddNewReservering">
+
+    <label > U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd }} op: {{ reservering.dag }} in zaal: {{ reservering.zalen.zaalNummer }}</label>
     <br> <br>
 
-    <form @submit.prevent="AddNewReservering">
+
 
     <div class="form-group">
       <label >Aantal Kaartjes:</label>
-      <select v-model="selected">
-        <option v-for="n in 15" :value="n" v-bind="newReservering.aantalKaartjes">{{ n }}</option>
+      <select v-model="newReservering.aantalKaartjes">
+        <option v-for="n in 15">{{ n }}</option>
       </select>
     </div>
 
     <div class="form-group">
-    <label for="emailAdres">Voer uw Emailadres in:</label>
-    <input v-model="newReservering.emailAdres" type="text" id="emailAdres" name="emailAdres" class="form-control">
+     <label for="emailAdres">Voer uw Emailadres in:</label>
+     <input v-model="newReservering.emailAdres" type="text" id="emailAdres" name="emailAdres" class="form-control">
     </div>
 
   <!--<div class="form-group">-->
@@ -36,9 +38,7 @@
   <!--</div>-->
 
     <div class="form-group">
-      <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit" @click="AddNewReservering(this.newReservering)">Voeg Reservering toe</button>
-
-      <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditFilm(newReservering.id)">Pas Reservering aan</button>
+      <button  class="btn btn-default" type="submit">Voeg Reservering toe</button>
     </div>
 
     </form>
@@ -57,18 +57,16 @@
     name: "newReservering",
     data() {
       return {
-        edit: false,
         selected: '',
         vid: this.$route.params.id,
         newReservering: {
-          voorstellingid: '',
+          Id: '',
           emailAdres: '',
-          aantalKaartjes: ''
+          aantalKaartjes: '',
+          voorstelling: 1
 
         },
-        Reserveringen:[
-
-        ],
+        Reserveringen:[],
         Voorstelling:[],
         gekozenStoelen: [],
       }
@@ -81,36 +79,15 @@
             console.log(response)
           });
       },
-    },
-
-      AddNewReservering(){
+      AddNewReservering() {
         axios.post('http://localhost:8080/reservering/save', this.newReservering)
           .then(response => {
             console.log(response);
           }, error => {
             console.log(error);
           });
-        self = this
-        this.success = true
-        setTimeout(function () {
-          self.success = false
-        }, 5000)
-        this.newReservering = {reserveringid: '', voorstelling:'', emailAdres:'', aantalKaartjes:''}
-        this.fetchFilm()
       },
-    validation() {
-      return {
-        titel: !!this.newFilm.titel.trim(),
-        datumBeschikbaar: !!this.newFilm.datumBeschikbaar.trim(),
-        afloopDatum: !!this.newFilm.afloopDatum.trim(),
-      }
     },
-        isValid() {
-          var validation = this.validation
-          return Object.keys(validation).every(function (key) {
-            return validation[key]
-          })
-        }
   }
 </script>
 
