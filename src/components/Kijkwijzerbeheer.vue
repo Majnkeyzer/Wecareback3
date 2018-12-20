@@ -23,14 +23,14 @@
         </div>
 
         <div class="form-group">
-          <label for="symbool">Symbool:</label>
+          <label for="symbool">Symbool URL:</label>
           <input v-model="newKijkwijzer.symbool" type="text" id="symbool" name="symbool" class="form-control">
         </div>
 
         <div class="form-group">
           <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="!edit">Voeg Kijkwijzer toe</button>
 
-          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditKijkwijzer(newKijkwijzer.kwid)">VeranderKijkwijzer</button>
+          <button :disabled="!isValid" class="btn btn-default" type="submit" v-if="edit" @click="EditKijkwijzer(newKijkwijzer.id)">VeranderKijkwijzer</button>
         </div>
 
       </form>
@@ -43,7 +43,7 @@
         <thead>
         <th>ID</th>
         <th>KIJKWIJZERTITEL</th>
-        <th>SYMBOOL</th>
+        <th>SYMBOOL URL</th>
 
         </thead>
 
@@ -53,8 +53,8 @@
           <td>{{ kijkwijzer.tekst }}</td>
           <td>{{ kijkwijzer.symbool }}</td>
           <td>
-            <button class="btn btn-default btn-sm" @click="ShowKijkwijzer(kijkwijzer.kwid)">Aanpassen</button>
-            <button class="btn btn-danger btn-sm" @click="RemoveKijkwijzer(kijkwijzer.kwid)">Verwijderen</button>
+            <button class="btn btn-default btn-sm" @click="ShowKijkwijzer(kijkwijzer.id)">Aanpassen</button>
+            <button class="btn btn-danger btn-sm" @click="RemoveKijkwijzer(kijkwijzer.id)">Verwijderen</button>
           </td>
         </tr>
         </tbody>

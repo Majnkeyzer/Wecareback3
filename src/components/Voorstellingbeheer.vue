@@ -171,10 +171,10 @@
         axios.get('http://localhost:8080/voorstelling/getById/' + id)
           .then(response => {
             this.newVoorstelling.id = response.data.id
-            this.newVoorstelling.films = response.data.film
+            this.newVoorstelling.film = response.data.film.titel
             this.newVoorstelling.dag = response.data.dag
             this.newVoorstelling.tijd = response. data.tijd
-            this.newVoorstelling.zalen = response.data.zalen
+            this.newVoorstelling.zalen = response.data.zalen.zaalNummer
           });
       }
       ,

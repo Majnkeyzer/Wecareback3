@@ -109,19 +109,17 @@
         <th>EXTRALANG</th>
         <th>DATUMBESCHIKBAAR</th>
         <th>AFLOOPDATUM</th>
-        <th>KIJKWIJZER</th>
         </thead>
 
         <tbody>
-        <tr v-for="film in films">
-          <router-link v-bind:to="'/Filminformatie/'+ film.id"><td>{{film.id}}</td></router-link>
+        <tr v-for="(film, index) in films" :key="index">
+          <td>{{film.id}}</td>
           <td>{{ film.titel }}</td>
           <td>{{ film.imax }}</td>
           <td>{{ film.ddd }}</td>
           <td>{{ film.extralang }}</td>
           <td>{{ film.datumBeschikbaar }}</td>
           <td>{{ film.afloopDatum }}</td>
-          <td>{{ film.kijkwijzers }}</td>
           <td>
             <button class="btn btn-default btn-sm" @click="ShowFilm(film.id)">Aanpassen</button>
             <button class="btn btn-danger btn-sm" @click="RemoveFilm(film.id)">Verwijderen</button>
@@ -160,7 +158,7 @@
         },
         films: [],
         success: false,
-        edit: false
+        edit: false,
       }
     },
     methods: {
@@ -208,7 +206,7 @@
             this.newFilm.imax = response.data.imax
             this.newFilm.ddd = response.data.ddd
             this.newFilm.extralang = response.data.extralang
-            this.newFilm.kijkwijzer = response.data.kijkwijzer
+            this.newFilm.kijkwijzers = response.data.kijkwijzers
             this.newFilm.datumBeschikbaar = response.data.datumBeschikbaar
             this.newFilm.afloopDatum = response.data.afloopDatum
           });

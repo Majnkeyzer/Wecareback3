@@ -15,30 +15,33 @@
   <!--<div>Selected: <strong>{{ options }} </strong></div>-->
 
 
-  <b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>
+  <!--<b-table  class="tabel" striped hover :items="moviesList" :fields="fields" ></b-table>-->
 
   <!--<div class="Programma2">-->
     <!--<ul>-->
       <!--<li v-for="(object, id) in gekozenfilms">{{film.titel}}-{{dag}}-{{tijd}}-{{zalen.zaalNummer}}<b-button><router-link to="/newReservering" style="color:white;">Reserveren</router-link></b-button></li>-->
     <!--</ul>-->
   <!--</div>-->
-  <!--<table class="table">-->
-    <!--<thead>-->
-    <!--<th>FILM</th>-->
-    <!--<th>DATUM</th>-->
-    <!--<th>TIJD</th>-->
-    <!--<th>ZAAL</th>-->
-    <!--</thead>-->
+  <table class="table">
+    <thead>
+    <th>FILM</th>
+    <th>DATUM</th>
+    <th>TIJD</th>
+    <th>ZAAL</th>
+    </thead>
 
-    <!--<tbody>-->
-    <!--<tr v-for="voorstelling in films">-->
-      <!--<td>{{ voorstelling.film.titel}}</td>-->
-      <!--<td>{{ voorstelling.dag }}</td>-->
-      <!--<td>{{ voorstelling.tijd }}</td>-->
-      <!--<td>{{ voorstelling.zalen.zaalNummer }}</td>-->
-    <!--</tr>-->
-    <!--</tbody>-->
-  <!--</table>-->
+    <tbody>
+    <tr v-for="voorstelling in moviesList">
+      <!--<router-link v-bind:to="'/Filminformatie/'+ voorstelling.film.id"><td>{{ voorstelling.film.titel}}</td></router-link>-->
+      <td>{{voorstelling.film.titel}}</td>
+      <td>{{ voorstelling.dag }}</td>
+      <td>{{ voorstelling.tijd }}</td>
+      <td>{{ voorstelling.zalen.zaalNummer }}</td>
+      <!--<td><button><router-link :to="'/Filminformatie/' + voorstelling.film.id">Meer informatie</router-link></button></td>-->
+      <td><button class="btn btn-danger btn-sm" @click="Meerinfo(voorstelling.film.id)">Meer informatie</button></td>
+    </tr>
+    </tbody>
+  </table>
 
   <br>
   <h2 align="center">Binnenkort in Retro Cinema</h2>
@@ -152,6 +155,10 @@
         const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),3,1));
         return Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
       },
+      Meerinfo(filmid){
+        let fid = filmid
+        this.$router.push({name:'Filminformatie',params:{id: fid}})
+      }
     },
     computed: {
       moviesList() {
