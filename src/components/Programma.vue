@@ -28,6 +28,8 @@
     <th>DATUM</th>
     <th>TIJD</th>
     <th>ZAAL</th>
+    <th></th>
+    <th></th>
     </thead>
 
     <tbody>
@@ -39,6 +41,7 @@
       <td>{{ voorstelling.zalen.zaalNummer }}</td>
       <!--<td><button><router-link :to="'/Filminformatie/' + voorstelling.film.id">Meer informatie</router-link></button></td>-->
       <td><button class="btn btn-danger btn-sm" @click="Meerinfo(voorstelling.film.id)">Meer informatie</button></td>
+      <td><b-button @click="Reserveer(voorstelling.id)">reserveren</b-button></td>
     </tr>
     </tbody>
   </table>
@@ -158,6 +161,10 @@
       Meerinfo(filmid){
         let fid = filmid
         this.$router.push({name:'Filminformatie',params:{id: fid}})
+      },
+      Reserveer(voorstellingid){
+        let vid = voorstellingid
+        this.$router.push({name: newReservering, params:{id: vid}})
       }
     },
     computed: {

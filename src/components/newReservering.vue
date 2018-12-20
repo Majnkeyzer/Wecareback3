@@ -47,14 +47,10 @@
 <script>
   import axios from 'axios';
   export default {
-    watch: {
-      '$route' (to, from) {
-        alert(to.params.vid);
-      }
-    },
     name: "newReservering",
     data() {
       return {
+        vid: this.$route.params.vid,
         newReservering: {
           voorstellingid: '',
           emailAdres: '',
@@ -70,7 +66,7 @@
     },
     created: {
       haalVoorstelling() {
-        axios.get('http://localhost:8080/voorstelling/getById' + this.$route.params.vid)
+        axios.get('http://localhost:8080/voorstelling/getById' + this.vid)
           .then(response => {
             this.Voorstelling = response.data;
             console.log(response)
