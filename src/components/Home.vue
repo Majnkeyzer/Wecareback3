@@ -43,14 +43,14 @@
         </p>
       </div>
 
-          <!--<div class="div3">-->
-            <!--<img src="https://cdn2.kinepolis.com/sites/kinepolis.nl/files/styles/slider_24_7_960/public/theaters/voorkant_cinemagnus_website.jpg?itok=Xi1g0UB5" style=" height: 250px; width: 500px; box-shadow: 10px 10px 5px black;">-->
-          <!--</div>-->
+          <div class="div3">
+            <img src="https://nos.nl/data/image/2018/08/14/493439/xxl.jpg" style=" height: 250px; width: 500px; box-shadow: 10px 10px 5px black;">
+          </div>
 
       <div class="div5">
         <p align="center">
           Wil je niet naar de film maar liever gezellig wat drinken of een hapje eten.
-          Ook dat kan! bij onze super gezellige brasserie kun je genieten van een lekkere versnapering of
+          Ook dat kan! Bij onze super gezellige brasserie kun je genieten van een lekkere versnapering of
           een uitgebreide maaltijd. De brasserie is elke dag open op dezelfde tijden als de bioscoop.
           Kom dus eens langs en oordeel zelf!
         </p>
@@ -85,6 +85,7 @@
     width: 350px;
     align: left;
     background-image:  url(../assets/hexagon-background.png);
+    color: black;
   }
 
   .div1{
@@ -92,6 +93,7 @@
     width: 350px;
     align: left;
     background-image:  url(../assets/hexagon-background.png);
+    color: black;
   }
 
   .div4{
@@ -99,6 +101,7 @@
     top: 200px;
     left: 575px;
     width: 350px;
+    color: black;
   }
 
   .div5{
@@ -106,6 +109,7 @@
     top: 700px;
     left: 575px;
     width: 350px;
+    color: black;
   }
 
   .div6{

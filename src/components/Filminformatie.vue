@@ -27,9 +27,12 @@
             <!--</svg>-->
             <img  class="img2" :src="movie.kijkwijzers[0].symbool">
             <img  class="img3" :src="movie.kijkwijzers[1].symbool">
-            <!--<img  class="img4" :src="movie.kijkwijzers[2].symbool">-->
+            <img  class="img4" :src="movie.kijkwijzers[2].symbool">
           </h4>
-          <p class="description" >{{ movie.samenvatting }}</p>
+
+          <h6 class="description" >{{ movie.samenvatting }}</h6>
+            <h6 class="genre">Genre: {{movie.genre}}</h6>
+            <h6 class="speelduur">Speelduur: {{movie.speelduur}}min.</h6>
         </div>
         </div>
       </div>
@@ -111,10 +114,11 @@
   .title{
     position: relative;
     bottom: 360px;
-    margin-left: 350px;
+    margin-left: 340px;
     font-size: 45px;
     font-weight: 600;
     text-shadow:2px 2px 5px darkgrey;
+    color: black;
   }
 
   .subtitle{
@@ -125,8 +129,25 @@
 
   .description{
     position: relative;
-    bottom: 260px;
-    margin-left: 350px;
+    bottom: 300px;
+    margin-left: 340px;
+    margin-right: 330px;
+    text-align: left;
+    max-lines: 40;
+    color: black;
+  }
+  .genre{
+    position: relative;
+    bottom: 175px;
+    margin-left: 340px;
+    color: black;
+  }
+
+  .speelduur{
+    position: relative;
+    bottom: 175px;
+    margin-left: 340px;
+    color: black;
   }
 
   /*.icon1{*/
@@ -144,14 +165,21 @@
   .img2{
     position: relative;
     right: 10px;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
   }
   .img3{
     position: relative;
     right: 10px;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
+  }
+
+  .img4{
+    position: relative;
+    right: 10px;
+    height: 40px;
+    width: 40px;
   }
 
 </style>

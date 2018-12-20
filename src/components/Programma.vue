@@ -1,17 +1,19 @@
 <template>
 
   <body>
-
   <br>
   <br>
-
   <div class="Programma">
-    <h5 align="left">Deze week in Retro Cinema</h5>
+    <h5 class="welkom" align="left">Deze week in Retro Cinema</h5>
+    <br>
+    <h6 class="keuze">Kies een dag</h6>
     <b-form inline align="left">
-      <b-form-select v-model="selected" :options="options" class="dropdown" size="sm" />
+      <b-form-select  v-model="selected" :options="options" class="dropdown" size="sm" />
     </b-form>
   </div>
 
+  <br>
+  <br>
   <!--<div>Selected: <strong>{{ options }} </strong></div>-->
 
 
@@ -38,20 +40,20 @@
       <td>{{ voorstelling.tijd }}</td>
       <td>{{ voorstelling.zalen.zaalNummer }}</td>
       <!--<td><button><router-link :to="'/Filminformatie/' + voorstelling.film.id">Meer informatie</router-link></button></td>-->
-      <td><button class="btn btn-danger btn-sm" @click="Meerinfo(voorstelling.film.id)">Meer informatie</button>
-        <button class="btn btn-danger btn-sm" @click="Reservering(voorstelling.id)">Reserveren</button>
+      <td><button class="button1" @click="Meerinfo(voorstelling.film.id)">Meer informatie</button>
+        <button class="button2" @click="Reservering(voorstelling.id)">Reserveren</button>
       </td>
     </tr>
     </tbody>
   </table>
 
   <br>
-  <h2 align="center">Binnenkort in Retro Cinema</h2>
-
+  <h2 class="cartitel" align="center">Binnenkort in Retro Cinema</h2>
+  <br>
   <!-- CAROUSEL CODE HIERONDER -->
   <div align="center">
-    <b-carousel id="carousel1"
-                style="text-shadow: 1px 1px 2px #333; width: 280px; height: 160px; margin-bottom: 50px;"
+    <b-carousel class="carousel1" id="carousel1"
+                style="text-shadow: 1px 1px 2px #333; width: 480px; height: 300px; margin-bottom: 50px;"
                 controls
                 indicators
                 background="#ababab"
@@ -65,33 +67,28 @@
       <!-- Text slides with image -->
       <b-carousel-slide>
         <img slot="img" class="d-block img-fluid w-100"
-             src="../assets/creed2.jpg" alt="image slot"
-             style="width: 280px; height: 160px;"/>
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <img slot="img" class="d-block img-fluid w-100"
              src="../assets/dunkirk.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
+             style="width: 500px; height: 300px;">
       </b-carousel-slide>
       <b-carousel-slide>
         <img slot="img" class="d-block img-fluid w-100"
              src="../assets/fantasticbeasts.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
+             style="width: 500px; height: 300px;">
       </b-carousel-slide>
       <b-carousel-slide>
         <img slot="img" class="d-block img-fluid w-100"
              src="../assets/firstman.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
+             style="width: 500px; height: 300px;">
       </b-carousel-slide>
       <b-carousel-slide>
         <img slot="img" class="d-block img-fluid w-100"
              src="../assets/halloween.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
+             style="width: 500px; height: 300px;">
       </b-carousel-slide>
       <b-carousel-slide>
         <img slot="img" class="d-block img-fluid w-100"
              src="../assets/hunterkiller.jpg" alt="image slot"
-             style="width: 280px; height: 160px;">
+             style="width: 500px; height: 300px;">
       </b-carousel-slide>
     </b-carousel>
     <!--    <p class="mt-4">
@@ -214,5 +211,30 @@
     font-family: Arial, Helvetica;
     color: black;
     background-color: lightgray;
+  }
+  .table, th, td{
+    color: black;
+  }
+  .keuze{
+    color: black;
+  }
+  .welkom{
+    color: black;
+  }
+  .button1{
+    color: white;
+    background-color: darkslategrey;
+    border-color: dimgrey;
+  }
+  .button2{
+    color:white;
+    background-color: darkslategrey;
+    border-color: dimgrey;
+  }
+  .cartitel{
+    color: black;
+  }
+  .carousel1{
+    box-shadow: 10px 10px 5px black;;
   }
 </style>

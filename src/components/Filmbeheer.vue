@@ -41,6 +41,16 @@
         </div>
 
         <div class="form-group">
+          <label for="speelduur">Speelduur:</label>
+          <input v-model="newFilm.speelduur" type="text" id="speelduur" name="speelduur" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="genre">Genre:</label>
+          <input v-model="newFilm.genre" type="text" id="genre" name="genre" class="form-control">
+        </div>
+
+        <div class="form-group">
           <label>Type Film:</label>
           <br>
           <b-form-checkbox id="imax"
@@ -109,6 +119,8 @@
         <th>EXTRALANG</th>
         <th>DATUMBESCHIKBAAR</th>
         <th>AFLOOPDATUM</th>
+        <th>SPEELDUUR</th>
+        <th>GENRE</th>
         </thead>
 
         <tbody>
@@ -120,6 +132,9 @@
           <td>{{ film.extralang }}</td>
           <td>{{ film.datumBeschikbaar }}</td>
           <td>{{ film.afloopDatum }}</td>
+          <td>{{ film.speelduur }} min.</td>
+          <td>{{ film.genre }}</td>
+
           <td>
             <button class="btn btn-default btn-sm" @click="ShowFilm(film.id)">Aanpassen</button>
             <button class="btn btn-danger btn-sm" @click="RemoveFilm(film.id)">Verwijderen</button>
@@ -155,6 +170,8 @@
           kijkwijzers: [],
           datumBeschikbaar: '',
           afloopDatum: '',
+          speelduur: '',
+          genre: ''
         },
         films: [],
         success: false,
@@ -187,7 +204,7 @@
       ,
       EditFilm(id) {
         var film = this.newFilm
-        this.newFilm = {id: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: ''}
+        this.newFilm = {id: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: '',speelduur: '', genre:''}
         axios.put('http://localhost:8080/film/update/' + id, film, function (data) {
           console.log(data)
         })
@@ -209,6 +226,9 @@
             this.newFilm.kijkwijzers = response.data.kijkwijzers
             this.newFilm.datumBeschikbaar = response.data.datumBeschikbaar
             this.newFilm.afloopDatum = response.data.afloopDatum
+            this.newFilm.speelduur = response.data.speelduur
+            this.newFilm.genre = response.data.genre
+
           });
       },
       AddNewFilm(){
@@ -223,7 +243,7 @@
         setTimeout(function () {
           self.success = false
         }, 5000)
-        this.newFilm = {id: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: ''}
+        this.newFilm = {id: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: '',speelduur: '', genre:''}
         this.fetchFilm()
       }
     }
