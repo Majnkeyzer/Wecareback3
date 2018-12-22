@@ -4,7 +4,7 @@
     <br><br><br><br><br><br><br>
     <div class="uitleg" align="center">
       <h5>Beheerderspagina</h5>
-      <p> Welokm op de beheerderspagina!<br>
+      <p> Welkom op de beheerderspagina!<br>
         Op deze pagina kunt u een keuze maken tussen films, kijkwijzers, zalen of voorstellingen, om toegevoegd, verwijderd en gewijzigd te worden.
       </p>
       <p>
