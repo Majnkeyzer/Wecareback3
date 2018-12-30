@@ -131,21 +131,21 @@
     position: relative;
     bottom: 300px;
     margin-left: 340px;
-    margin-right: 330px;
+    margin-right: 200px;
     text-align: left;
     max-lines: 40;
     color: black;
   }
   .genre{
     position: relative;
-    bottom: 175px;
+    bottom: 220px;
     margin-left: 340px;
     color: black;
   }
 
   .speelduur{
     position: relative;
-    bottom: 175px;
+    bottom: 220px;
     margin-left: 340px;
     color: black;
   }
