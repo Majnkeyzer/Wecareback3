@@ -1,6 +1,8 @@
 <template>
   <div class="hero-body">
     <div class="container description-container">
+      <br>
+      <b-button><router-link to="/Programma" style="color:white;">Terug naar programma</router-link></b-button>
       <div class="columns">
         <router-view></router-view>
         <div class="column is-three-quarters" v-for="(movie, index) in films " :key="index">

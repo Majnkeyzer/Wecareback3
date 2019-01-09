@@ -8,26 +8,26 @@
     <b-button><router-link to="/Programma" style="color:white;">Terug</router-link></b-button>
     <br> <br>
 
-    <img :src=reservering.film.poster>
+    <img :src=reservering.film.poster style="height: 350px; width: 250px;">
 
     <br> <br>
 
         <form @submit.prevent="AddNewReservering">
 
-    <label > U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd }} op: {{ reservering.dag }} in zaal: {{ reservering.zalen.zaalNummer }}</label>
+    <label style="color: black"> U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd }} op: {{ reservering.dag }} in zaal: {{ reservering.zalen.zaalNummer }}</label>
     <br> <br>
 
 
 
     <div class="form-group">
-      <label >Aantal Kaartjes:</label>
+      <label style="color: black" >Aantal Kaartjes:</label>
       <select v-model="newReservering.aantalKaartjes">
         <option v-for="n in 15">{{ n }}</option>
       </select>
     </div>
 
     <div class="form-group">
-     <label for="emailAdres">Voer uw Emailadres in:</label>
+     <label for="emailAdres" style="color: black">Voer uw Emailadres in:</label>
      <input v-model="newReservering.emailAdres" type="text" id="emailAdres" name="emailAdres" class="form-control">
     </div>
 
