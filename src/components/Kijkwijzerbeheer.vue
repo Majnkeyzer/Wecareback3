@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <br>
-    <button><router-link to="/Filmbeheer">Filmbeheer</router-link></button>
-    <button><router-link to="/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
-    <button><router-link to="/Zaalbeheer">Zaalbeheer</router-link></button>
+    <button><router-link to="/admin/Filmbeheer">Filmbeheer</router-link></button>
+    <button><router-link to="/admin/Voorstellingbeheer">Voorstellingbeheer</router-link></button>
+    <button><router-link to="/admin/Zaalbeheer">Zaalbeheer</router-link></button>
     <br><br>
     <h1>Kijkwijzerbeheer</h1>
     <div id="KijkwijzerController" style="padding-top: 2em">

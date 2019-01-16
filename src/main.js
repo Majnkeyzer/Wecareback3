@@ -62,12 +62,18 @@ const router = new VueRouter({
     {path: '/', component: Home},
     {path: '/Login', component: Login},
     {path: '/Logout', component: Logout},
-    {path: '/Beheer', component: Beheer},
+    {
+      path: '/admin/Beheer', component: Beheer// meta: {
+      //   requiresAuth:true,
+      //     adminAuth:true
+      //   },
+      //   beforeEnter: requireAuth}
+    } ,
     {path: '/Programma', component: Programma},
-    {path: '/Filmbeheer', component: Filmbeheer},
-    {path: '/Voorstellingbeheer', component: Voorstellingbeheer},
-    {path: '/Zaalbeheer', component: Zaalbeheer},
-    {path: '/Kijkwijzerbeheer', component: Kijkwijzerbeheer},
+    {path: '/admin/Filmbeheer', component: Filmbeheer},
+    {path: '/admin/Voorstellingbeheer', component: Voorstellingbeheer},
+    {path: '/admin/Zaalbeheer', component: Zaalbeheer},
+    {path: '/admin/Kijkwijzerbeheer', component: Kijkwijzerbeheer},
     {path: '/Filminformatie/:id', name:'Filminformatie', component: Filminformatie },
     {path: '/newReservering/:id', name:'newReservering',  component: newReservering},
   ]
@@ -94,7 +100,7 @@ new Vue({
         <b-button><router-link to="/" style="color:white;">Home</router-link></b-button>
         <b-button><router-link to="/Login" style="color:white;">Login</router-link></b-button>        
         <b-button><router-link to="/Programma" style="color:white;">Programma</router-link></b-button> 
-        <!--<b-button><router-link to="/Beheer" style="color:white;">Beheer</router-link></b-button>-->
+        <b-button><router-link to="/admin/Beheer" style="color:white;">Beheer</router-link></b-button>
         </b-button-group>
         </div>
       <router-view></router-view>

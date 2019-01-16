@@ -4,8 +4,8 @@
     <form class="form-signin" @submit.prevent="login">
       <h2 class="form-signin-heading">Login beheerder</h2>
       <div class="alert alert-danger" v-if="error">{{ error }}</div>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input v-model="email" type="text" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="username" class="sr-only">Username</label>
+      <input v-model="username" type="text" id="username" class="form-control" placeholder="Gebruikersnaam" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input v-model="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
@@ -21,7 +21,7 @@
     name: 'Login',
     data() {
       return {
-        email: '',
+        username: '',
         password: '',
         error: false
       }
@@ -38,15 +38,15 @@
     methods: {
       checkCurrentLogin () {
         if (this.currentUser) {
-          this.$router.replace(this.$route.query.redirect || '/Beheer')
+          this.$router.replace(this.$route.query.redirect || '/admin/Beheer')
         }
       },
       login() {
         let data = new FormData();
 
-        data.set('username', this.email);
+        data.set('username', this.username);
         data.set('password', this.password);
-        axios.post('http://localhost:8080/login', data)
+        axios.post('http://localhost:8080/Login', data)
           .then(request => this.loginSuccessful(request))
           .catch(() => this.loginFailed())
         },
@@ -58,8 +58,8 @@
         this.error = false
 
         // localStorage.token = req.data.token
-        this.$store.dispatch('login')
-        this.$router.replace(this.$route.query.redirect || '/Beheer')
+        this.$store.dispatch('Login')
+        this.$router.replace(this.$route.query.redirect || '/admin/Beheer')
       },
       loginFailed() {
         this.error = 'Login failed!'
@@ -74,7 +74,7 @@
       },
       checkCurrentLogin() {
         if (localStorage.token) {
-          this.$router.replace(this.$route.query.redirect || '/Beheer')
+          this.$router.replace(this.$route.query.redirect || '/admin/Beheer')
         }
       },
     }
