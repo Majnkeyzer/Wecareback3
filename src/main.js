@@ -100,7 +100,7 @@ new Vue({
         <b-button><router-link to="/" style="color:white;">Home</router-link></b-button>
         <b-button><router-link to="/Login" style="color:white;">Login</router-link></b-button>        
         <b-button><router-link to="/Programma" style="color:white;">Programma</router-link></b-button> 
-        <b-button><router-link to="/admin/Beheer" style="color:white;">Beheer</router-link></b-button>
+        <!--<b-button><router-link to="/admin/Beheer" style="color:white;">Beheer</router-link></b-button>-->
         </b-button-group>
         </div>
       <router-view></router-view>

@@ -63,7 +63,7 @@
           Id: '',
           emailAdres: '',
           aantalKaartjes: '',
-          voorstelling: 1
+          voorstelling: ''
 
         },
         Reserveringen:[],
@@ -82,6 +82,7 @@
       AddNewReservering() {
         axios.post('http://localhost:8080/reservering/save', this.newReservering)
           .then(response => {
+            alert("Uw reservering is opgeslagen");
             console.log(response);
           }, error => {
             console.log(error);
