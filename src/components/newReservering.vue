@@ -14,7 +14,7 @@
 
         <form @submit.prevent="AddNewReservering">
 
-    <label style="color: black"> U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd }} op: {{ reservering.dag }} in zaal: {{ reservering.zalen.zaalNummer }}</label>
+    <label style="color: black"> U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd.join(",").replace(",", ":") }}<!-- op: {{ reservering.dag.join(",").replaceAll(",", "-") }}--> in zaal: {{ reservering.zalen.zaalNummer }}</label>
     <br> <br>
 
 
@@ -82,6 +82,7 @@
       AddNewReservering() {
         axios.post('http://localhost:8080/reservering/save', this.newReservering)
           .then(response => {
+            alert("Uw reservering is opgeslagen");
             console.log(response);
           }, error => {
             console.log(error);

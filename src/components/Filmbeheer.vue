@@ -243,7 +243,7 @@
         setTimeout(function () {
           self.success = false
         }, 5000)
-        this.newFilm = {id: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzer: [], datumBeschikbaar: '',afloopDatum: '',speelduur: '', genre:''}
+        this.newFilm = {id: '', titel: '', samenvatting: '', poster: '', imax: '',ddd: '',extralang: '',kijkwijzers: [], datumBeschikbaar: '',afloopDatum: '',speelduur: '', genre:''}
         this.fetchFilm()
       }
     }
