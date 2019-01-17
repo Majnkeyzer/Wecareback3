@@ -25,6 +25,7 @@ import Filminformatie from './components/Filminformatie'
 import axios from 'axios'
 
 
+
 import VueCarousel from 'vue-carousel';
 import VueResize from 'vue-resize'
 import { Dropdown } from 'bootstrap-vue/es/components';
@@ -52,7 +53,14 @@ Vue.use(vueResource);
 Vue.use(VueRouter);
 Vue.use(Form);
 
+
 Vue.config.productionTip = false;
+
+// // Vue.prototype.$http = require('axios');
+// const token = localStorage.getItem('token')
+// if (token) {
+//   Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+// }
 
 
 const router = new VueRouter({
@@ -63,11 +71,10 @@ const router = new VueRouter({
     {path: '/Login', component: Login},
     {path: '/Logout', component: Logout},
     {
-      path: '/admin/Beheer', component: Beheer// meta: {
-      //   requiresAuth:true,
-      //     adminAuth:true
-      //   },
-      //   beforeEnter: requireAuth}
+      path: '/admin/Beheer',
+      component: Beheer,
+      // meta: {
+      //   requiresAuth:true}
     } ,
     {path: '/Programma', component: Programma},
     {path: '/admin/Filmbeheer', component: Filmbeheer},
@@ -78,6 +85,19 @@ const router = new VueRouter({
     {path: '/newReservering/:id', name:'newReservering',  component: newReservering},
   ]
 });
+
+// router.beforeEach((to, from, next) => {
+//   if(to.matched.some(record => record.meta.requiresAuth)) {
+//     if (!store.getters.currentUser) {
+//       next({path: '/admin',
+//       });
+//     } else {
+//       next()
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
 axios.defaults.baseURL= 'http://localhost:8080'
 axios.defaults.headers.common['Authorization'] = 'RetroCinema'

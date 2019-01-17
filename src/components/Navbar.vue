@@ -2,7 +2,7 @@
   <nav class="navbar navbar-dark bios">
     <a class="navbar-brand" href="/">Login</a>
     <span class="navbar-text">
-      {{ currentUser.email }}
+      {{ currentUser.username }}
       <router-link to="/logout" class="btn btn-logout btn-sm">Logout</router-link>
     </span>
   </nav>

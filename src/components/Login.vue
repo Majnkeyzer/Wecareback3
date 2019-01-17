@@ -58,7 +58,7 @@
         this.error = false
 
         // localStorage.token = req.data.token
-        this.$store.dispatch('Login')
+        this.$store.dispatch('login')
         this.$router.replace(this.$route.query.redirect || '/admin/Beheer')
       },
       loginFailed() {
@@ -111,7 +111,7 @@
   .form-signin .form-control {
     position: relative;
     height: auto;
-    -webkit-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 10px;
     font-size: 16px;
@@ -119,7 +119,7 @@
   .form-signin .form-control:focus {
     z-index: 2;
   }
-  .form-signin input[type="email"] {
+  .form-signin input[type="username"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
