@@ -8,6 +8,8 @@ import 'vue-resize/dist/vue-resize.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './store'
+import DateFilter from './filters/date'
+
 
 
 
@@ -52,6 +54,8 @@ Vue.use(BootstrapVue);
 Vue.use(vueResource);
 Vue.use(VueRouter);
 Vue.use(Form);
+Vue.filter('date', DateFilter );
+
 
 
 Vue.config.productionTip = false;

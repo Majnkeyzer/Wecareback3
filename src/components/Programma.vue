@@ -36,7 +36,7 @@
     <tr v-for="voorstelling in moviesList">
       <!--<router-link v-bind:to="'/Filminformatie/'+ voorstelling.film.id"><td>{{ voorstelling.film.titel}}</td></router-link>-->
       <td>{{voorstelling.film.titel}}</td>
-      <td>{{ voorstelling.dag }}</td>
+      <td>{{ voorstelling.dag | date}}</td>
       <td>{{ voorstelling.tijd }}</td>
       <td>{{ voorstelling.zalen.zaalNummer }}</td>
       <!--<td><button><router-link :to="'/Filminformatie/' + voorstelling.film.id">Meer informatie</router-link></button></td>-->
@@ -102,6 +102,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
   import axios from 'axios';
   export default {
     name: "films",
@@ -111,13 +112,13 @@
         sliding: true,
         selected: '',
         options: [
-          { value: 0, text: 'Zondag' },
-          { value: 1, text: 'Maandag' },
-          { value: 2, text: 'Dinsdag' },
-          { value: 3, text: 'Woensdag', },
-          { value: 4, text: 'Donderdag' },
-          { value: 5, text: 'Vrijdag' },
-          { value: 6, text: 'Zaterdag' },
+          {value: 0, text: 'Zondag'},
+          {value: 1, text: 'Maandag'},
+          {value: 2, text: 'Dinsdag'},
+          {value: 3, text: 'Woensdag',},
+          {value: 4, text: 'Donderdag'},
+          {value: 5, text: 'Vrijdag'},
+          {value: 6, text: 'Zaterdag'},
         ],
         fields: [
           {
@@ -125,10 +126,10 @@
             label: 'Film'
           },
           {
-             key: 'dag',
-             label: 'Datum'
-           },
-           {
+            key: 'dag',
+            label: 'Datum'
+          },
+          {
             key: 'tijd',
             label: 'Tijd'
           },
@@ -138,9 +139,9 @@
           }
         ],
         films: [],
-        vid:'',
-        zid:'',
-        fid:''
+        vid: '',
+        zid: '',
+        fid: ''
       };
     },
     methods: {
@@ -151,16 +152,16 @@
         this.sliding = false
       },
       calculateWeek(datum) {
-        const yearStart = new Date(Date.UTC(datum.getUTCFullYear(),3,1));
-        return Math.ceil((((datum - yearStart) / 86400000) + 1)/7);
+        const yearStart = new Date(Date.UTC(datum.getUTCFullYear(), 3, 1));
+        return Math.ceil((((datum - yearStart) / 86400000) + 1) / 7);
       },
-      Meerinfo(filmid){
+      Meerinfo(filmid) {
         let fid = filmid
-        this.$router.push({name:'Filminformatie',params:{id: fid}})
+        this.$router.push({name: 'Filminformatie', params: {id: fid}})
       },
-      Reservering(resid){
+      Reservering(resid) {
         let vid = resid
-        this.$router.push({name:'newReservering',params:{id: vid}})
+        this.$router.push({name: 'newReservering', params: {id: vid}})
       }
     },
     computed: {

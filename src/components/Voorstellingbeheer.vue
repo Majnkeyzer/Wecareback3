@@ -72,7 +72,7 @@
         <tr v-for="voorstelling in voorstellingen">
           <td>{{ voorstelling.id }}</td>
           <td>{{ voorstelling.film.titel }}</td>
-          <td>{{ voorstelling.dag }}</td>
+          <td>{{ voorstelling.dag | date }}</td>
           <td>{{ voorstelling.tijd }}</td>
           <td>{{ voorstelling.zalen.zaalNummer }}</td>
           <td>
@@ -136,6 +136,7 @@
         axios.get('http://localhost:8080/voorstelling/getAll')
           .then(response => {
             this.voorstellingen = response.data;
+            console.log(response)
           });
       }
       ,

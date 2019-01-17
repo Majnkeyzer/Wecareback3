@@ -130,8 +130,8 @@
           <td>{{ film.imax }}</td>
           <td>{{ film.ddd }}</td>
           <td>{{ film.extralang }}</td>
-          <td>{{ film.datumBeschikbaar }}</td>
-          <td>{{ film.afloopDatum }}</td>
+          <td>{{ film.datumBeschikbaar | date }}</td>
+          <td>{{ film.afloopDatum | date }}</td>
           <td>{{ film.speelduur }} min.</td>
           <td>{{ film.genre }}</td>
 
