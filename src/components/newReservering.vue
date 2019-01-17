@@ -14,7 +14,7 @@
 
         <form @submit.prevent="AddNewReservering">
 
-    <label style="color: black"> U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd }} op: {{ reservering.dag }} in zaal: {{ reservering.zalen.zaalNummer }}</label>
+    <label style="color: black"> U Reserveert: {{ reservering.film.titel }} om: {{ reservering.tijd.join(",").replace(",", ":") }}<!-- op: {{ reservering.dag.join(",").replaceAll(",", "-") }}--> in zaal: {{ reservering.zalen.zaalNummer }}</label>
     <br> <br>
 
 
@@ -63,7 +63,7 @@
           Id: '',
           emailAdres: '',
           aantalKaartjes: '',
-          voorstelling: ''
+          voorstelling: 1
 
         },
         Reserveringen:[],
