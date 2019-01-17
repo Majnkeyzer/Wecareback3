@@ -46,7 +46,7 @@
 
         data.set('username', this.username);
         data.set('password', this.password);
-        axios.post('http://localhost:8080/Login', data)
+        axios.post('http://localhost:8080/login', data)
           .then(request => this.loginSuccessful(request))
           .catch(() => this.loginFailed())
         },
