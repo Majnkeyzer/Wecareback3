@@ -10,10 +10,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import Navbar from '/components/Navbar'
-import test from './components/Beheer'
-import Users from './components/Login'
-import programma from './components/Programma'
-import Beheer from './components/Beheer'
+import test from './components/Service'
+import Users from './components/Premie'
+import programma from './components/Vergoedingen'
+import Beheer from './components/Service'
 import Film_toevoegen from './components/Film toevoegen'
 
 export default {

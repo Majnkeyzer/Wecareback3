@@ -1,8 +1,8 @@
 {
-  "name": "bioscoopapp",
+  "name": "wecareapp",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "robert",
+  "author": "mickel",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -19,10 +19,13 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap": "^3.4.1",
     "bootstrap-vue": "^2.0.0-rc.11",
     "cors": "^2.8.5",
     "firebase": "^5.5.9",
     "jwt-decode": "^2.2.0",
+    "save": "^2.3.3",
+    "sockjs-client": "^1.3.0",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.4",
     "vue-carousel": "^0.14.0",
@@ -33,8 +36,10 @@
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vue-vanilla-datetime-picker": "^1.0.26",
+    "vue-websocket": "^0.2.3",
     "vuefire": "^1.4.5",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "webstomp-client": "^1.2.6"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.25",
